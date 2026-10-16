@@ -1,0 +1,15 @@
+{
+  "azmod": 1,
+  "id": "hello-cxx",
+  "name": "Hello C++",
+  "version": "1.0.0",
+  "author": "Kyle-Hosman",
+  "summary": "The SDK's C++ test mod: a page with each deck's BPM, built with g++ against the deck's libstdc++.",
+  "description": "Built by the SDK's CI to check that a C++ mod compiles in the build container, passes validate and passes the test harness. It only reads deck state through the core's services.",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": ["any"],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

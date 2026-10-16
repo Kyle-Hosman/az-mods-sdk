@@ -1,0 +1,8 @@
+# Keep LF line endings on every OS. The build runs make inside a Linux container, and a
+# Makefile or script checked out with Windows (CRLF) line endings breaks it.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.png binary
+*.so binary
+*.exe binary
+*.azmod binary

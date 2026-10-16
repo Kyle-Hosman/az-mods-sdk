@@ -1,0 +1,36 @@
+name: core header
+
+# include/azmod-mod.h is the core's public API. It must be byte-identical to the header in
+# the AZ-MODS core at the commit named in include/CORE-COMMIT, so a mod built with this SDK
+# matches what the deck runs.
+on:
+  pull_request:
+    paths:
+      - include/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare with the core
+        run: |
+          set -eu
+          sha=$(tr -d '[:space:]' < include/CORE-COMMIT)
+          case "$sha" in
+            *[!0-9a-f]* | "") echo "include/CORE-COMMIT must hold one full commit id"; exit 1 ;;
+          esac
+          [ ${#sha} -eq 40 ] || { echo "include/CORE-COMMIT must hold a 40-character commit id"; exit 1; }
+          url="https://raw.githubusercontent.com/Kyle-Hosman/xdj-az-mods/$sha/src/azmod/azmod-mod.h"
+          curl -fsSL "$url" -o core.h
+          if cmp -s core.h include/azmod-mod.h; then
+            echo "include/azmod-mod.h matches the core at $sha"
+          else
+            echo "include/azmod-mod.h differs from the core at $sha:"
+            diff -u core.h include/azmod-mod.h || true
+            exit 1
+          fi

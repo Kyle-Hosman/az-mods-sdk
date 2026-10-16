@@ -1,0 +1,49 @@
+/* AZ-MODS look: warm neutrals, the logo's orange as the one accent, Archivo headings. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&display=swap");
+
+:root {
+  --az-orange: #ff8c00;
+  --az-orange-deep: #c86a00;
+}
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1f1c19;
+  --md-primary-fg-color--light: #2b2723;
+  --md-primary-fg-color--dark: #141210;
+  --md-primary-bg-color: #faf7f2;
+  --md-accent-fg-color: var(--az-orange-deep);
+  --md-typeset-a-color: var(--az-orange-deep);
+  --md-default-bg-color: #fbf9f6;
+  --md-code-bg-color: #f3efe8;
+}
+[data-md-color-scheme="slate"] {
+  --md-hue: 30;
+  --md-primary-fg-color: #1a1a1a;
+  --md-primary-fg-color--light: #282828;
+  --md-primary-fg-color--dark: #141414;
+  --md-accent-fg-color: var(--az-orange);
+  --md-typeset-a-color: var(--az-orange);
+  --md-default-bg-color: #202020;
+  --md-code-bg-color: #282828;
+}
+.md-header { border-bottom: 2px solid var(--az-orange); }
+.md-tabs { background-color: var(--md-primary-fg-color--light); }
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-header__topic {
+  font-family: "Archivo", "IBM Plex Sans", sans-serif;
+  letter-spacing: -0.01em;
+}
+.md-typeset h1 { font-weight: 800; }
+.md-typeset h2 { font-weight: 700; border-bottom: 1px solid var(--md-default-fg-color--lightest); padding-bottom: .2em; }
+.md-nav__link--active, .md-nav__item .md-nav__link--active { color: var(--md-accent-fg-color); }
+
+/* landing page */
+.az-hero { padding: 1.2rem 0 .4rem; }
+.az-hero h1 { margin: .4rem 0 .6rem; font-size: 2.3rem; line-height: 1.1; }
+.az-hero p { font-size: .95rem; max-width: 42rem; }
+.md-typeset .az-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: .8rem; margin: 1.2rem 0; }
+.md-typeset .az-card { display: block; border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 3px solid var(--az-orange); border-radius: 6px; padding: .8rem 1rem;
+  color: var(--md-default-fg-color); transition: border-color .15s, transform .15s; }
+.md-typeset .az-card:hover { border-color: var(--az-orange); transform: translateY(-1px); }
+.md-typeset .az-card strong { display: block; font-family: "Archivo", sans-serif; font-size: .9rem; margin-bottom: .2rem; }
+.md-typeset .az-card span { font-size: .75rem; color: var(--md-default-fg-color--light); }

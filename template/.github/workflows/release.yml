@@ -1,0 +1,108 @@
+# Release workflow for an AZ-MODS mod.
+#
+# Copy this file to .github/workflows/release.yml in your mod's repository. Then a
+# release is one command:
+#
+#     git tag hello-az-1.0.0 && git push origin hello-az-1.0.0
+#
+# The tag must be <id>-<version> or v<version>, and the version must match azmod.json.
+# The workflow builds the mod in the SDK container, validates it, packages it, attaches
+# the .azmod and its icon to a GitHub release for the tag, and prints the
+# azmods-repo.json entry. If UPDATE_INDEX is "true" and your repository has an
+# azmods-repo.json at its root, it also adds the entry and commits it.
+name: release
+
+on:
+  push:
+    # this mod's tags only; a repository with several mods keeps just "hello-az-*" here
+    tags: ["hello-az-*", "v*"]
+
+permissions:
+  contents: write          # create the release and (optionally) commit the repository file
+
+env:
+  MOD_DIR: "."             # where azmod.json and the Makefile are, relative to the repo root
+  SDK_REPO: "Kyle-Hosman/az-mods-sdk"
+  SDK_REF: "v1.2.3"        # the SDK version you built and tested with (`azmod-pack --version`)
+  UPDATE_INDEX: "true"     # commit the new entry into ./azmods-repo.json if it exists
+
+jobs:
+  release:
+    # GitHub's x86 runners build the arm64 container through QEMU, which is slower but makes
+    # the same bytes. Public repositories can use the native arm64 runner instead:
+    #   runs-on: ubuntu-24.04-arm   (and drop the QEMU step)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check SDK_REF exists
+        # a tag or branch of the SDK repository (or a full commit id); a ref that does not
+        # exist yet fails here with the reason instead of in the checkout below
+        run: |
+          case "$SDK_REF" in
+            *[!0-9a-f]*|"") ;;
+            *) [ ${#SDK_REF} -eq 40 ] && exit 0 ;;
+          esac
+          if ! git ls-remote --exit-code "https://github.com/$SDK_REPO" \
+                 "refs/tags/$SDK_REF" "refs/heads/$SDK_REF" > /dev/null; then
+            echo "::error::SDK_REF $SDK_REF is not a tag or branch of $SDK_REPO. Set SDK_REF in this workflow to a released SDK version (azmod-pack --version prints yours)."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SDK_REPO }}
+          ref: ${{ env.SDK_REF }}
+          path: .azmod-sdk
+
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - name: Build the SDK container
+        run: python3 .azmod-sdk/tools/azmod-pack image
+
+      - name: Check the tag matches azmod.json
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          m = json.load(open(os.path.join(os.environ["MOD_DIR"], "azmod.json")))
+          tag = os.environ["GITHUB_REF_NAME"]
+          ok = (f"{m['id']}-{m['version']}", f"v{m['version']}")
+          if tag not in ok:
+              sys.exit(f"tag {tag} does not match azmod.json; expected one of {ok}")
+          PY
+
+      - name: Build and validate
+        run: python3 .azmod-sdk/tools/azmod-pack build "$MOD_DIR"
+
+      - name: Package
+        run: |
+          python3 .azmod-sdk/tools/azmod-pack package "$MOD_DIR" --out dist \
+            --github "$GITHUB_REPOSITORY" --tag "$GITHUB_REF_NAME"
+
+      - name: Attach to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || \
+            gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes ""
+          gh release upload "$GITHUB_REF_NAME" dist/*.azmod dist/*-icon.png --clobber
+
+      - name: The azmods-repo.json entry
+        run: cat dist/*.entry.json
+
+      - name: Commit the entry to azmods-repo.json
+        if: env.UPDATE_INDEX == 'true' && hashFiles('azmods-repo.json') != ''
+        run: |
+          branch=$(git remote show origin | sed -n 's/.*HEAD branch: //p')
+          git checkout "$branch"
+          python3 .azmod-sdk/tools/azmod-pack repo add azmods-repo.json dist/*.entry.json
+          python3 .azmod-sdk/tools/azmod-pack repo check azmods-repo.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add azmods-repo.json
+          git commit -m "azmods-repo.json: $GITHUB_REF_NAME"
+          git push origin "$branch"

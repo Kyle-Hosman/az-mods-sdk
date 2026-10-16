@@ -1,0 +1,99 @@
+# The SDK's own checks: unit tests; the template mod and the C++ test mod under the host
+# test harness (plain, AddressSanitizer + UBSan, ThreadSanitizer) with the harness's planted
+# controls; then build and validate both in the SDK container, and package the template.
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: clang-format, the version .clang-format names
+        run: |
+          pip install clang-format==21.1.8
+          git ls-files '*.c' '*.cpp' ':!include/azmod-mod.h' | xargs clang-format --dry-run --Werror
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+
+  harness:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pass: [plain, asan, tsan]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Address space layout ThreadSanitizer supports
+        # ThreadSanitizer aborts at start with the runner's default 32 random mmap bits
+        run: sudo sysctl -w vm.mmap_rnd_bits=28
+
+      - name: Template, ${{ matrix.pass }}
+        run: |
+          clang --version
+          make -C template test SAN=${{ matrix.pass }} AZ_SDK="$PWD" TEST_CC=clang
+
+      - name: C++ test mod, ${{ matrix.pass }}
+        run: make -C tests/cxx/hello-cxx test SAN=${{ matrix.pass }} AZ_SDK="$PWD" TEST_CC=clang TEST_CXX=clang++
+
+      - name: Planted controls, ${{ matrix.pass }}
+        # sanitize.sh exits non-zero when a control is not caught; the count also fails
+        # the step if a control did not run at all
+        run: |
+          sh tools/harness/sanitize.sh --controls --passes ${{ matrix.pass }} | tee controls.log
+          case ${{ matrix.pass }} in plain) want=9 ;; asan) want=3 ;; tsan) want=1 ;; esac
+          got=$(grep -c '^control .*: caught' controls.log || true)
+          echo "controls caught: $got of $want"
+          [ "$got" = "$want" ]
+
+      - name: Coverage check can fail, ${{ matrix.pass }}
+        # a compiler that drops -fsanitize must be reported as not instrumented
+        if: matrix.pass != 'plain'
+        run: |
+          printf '#!/bin/sh\nfor a; do shift; case $a in -fsanitize*|-fno-sanitize*) ;; *) set -- "$@" "$a" ;; esac; done\nexec clang "$@"\n' > "$RUNNER_TEMP/nosan-cc"
+          chmod +x "$RUNNER_TEMP/nosan-cc"
+          if CC="$RUNNER_TEMP/nosan-cc" sh tools/harness/sanitize.sh --passes ${{ matrix.pass }} \
+                 hello-az:4:template/hello-az.c > nosan.log 2>&1; then
+            cat nosan.log; echo "an uninstrumented build passed"; exit 1
+          fi
+          grep 'is not instrumented' nosan.log
+
+  template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+      - name: Build the SDK container
+        run: tools/azmod-pack image
+      - name: Code in the guide compiles
+        run: |
+          tools/check-doc-snippets.py
+          tools/check-doc-snippets.py --control
+      - name: Build and validate the template
+        run: tools/azmod-pack build template
+      - name: Build and validate the C++ test mod
+        # g++ against the deck's libstdc++, exporting only az_mod_v1_entry
+        run: tools/azmod-pack build tests/cxx/hello-cxx
+      - name: Package the template
+        run: tools/azmod-pack package template --out dist --github "$GITHUB_REPOSITORY"
+      - name: Reproducible build
+        run: |
+          # The template's library must be byte-identical to the one recorded in
+          # tests/expected/hello-az.so.sha256 (built on another machine with the same container).
+          # A change to the template changes the hash: update the file in the same commit.
+          sha256sum template/out/hello-az.so
+          (cd template/out && sha256sum -c ../../tests/expected/hello-az.so.sha256)

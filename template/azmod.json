@@ -1,0 +1,15 @@
+{
+  "azmod": 1,
+  "id": "hello-az",
+  "name": "Hello AZ",
+  "version": "1.0.0",
+  "author": "your-github-name",
+  "summary": "Template mod: a settings page with a checkbox and a live BPM and title readout for each deck.",
+  "description": "The example mod from the AZ-MODS SDK. It adds a page under Mod Menu > Community Mods > Installed > Hello AZ with one setting (show track titles) and a live list of each loaded deck's BPM and track title.\n\nIt only reads deck state through the core's services. It does not patch the deck's code, change any control or audio, or use the network.",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": ["any"],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

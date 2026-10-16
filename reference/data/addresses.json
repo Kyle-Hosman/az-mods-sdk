@@ -1,0 +1,3222 @@
+{
+ "meta": {
+  "source": "AZ-MODS core b8418caa8e51",
+  "firmware": {
+   "v130": {
+    "tag": "ep147-79d43e5de779fc1b",
+    "md5": "3518275e8b4d5d63636d8d7b4468d7ba",
+    "firmware": [
+     "1.30",
+     "1.32 (AZ-MODS loader firmware: the 1.30 program, unchanged)"
+    ]
+   },
+   "v200": {
+    "tag": "ep147-9e9454e357389ece",
+    "md5": "8daa1de55d7328f458f6d855cdc3cdde",
+    "firmware": [
+     "2.00",
+     "2.01 (AZ-MODS loader firmware: the 2.00 program, unchanged)"
+    ]
+   }
+  },
+  "columns": [
+   "name",
+   "v130",
+   "v200",
+   "kind",
+   "class",
+   "meaning",
+   "core_hook"
+  ],
+  "count": 354,
+  "withheld": 9
+ },
+ "addresses": [
+  {
+   "name": "BEATFX_WIRE_CALLER",
+   "v130": "0x05acb58",
+   "v200": "0x05d8a70",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "verified: LR-4 is `bl 0x1d5ef18`",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x07670a8",
+   "v200": "0x07a8928",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x077e260",
+   "v200": "0x07bfb60",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PBREAD_DEFAULT",
+   "v130": "0x07820d0",
+   "v200": "0x07c39d0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x0782dc0",
+   "v200": "0x07c46c0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x0783010",
+   "v200": "0x07c4910",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PB_CLEARSRC_ADDR",
+   "v130": "0x0783fe0",
+   "v200": "0x07c58e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x0784e90",
+   "v200": "0x07c6790",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x0785228",
+   "v200": "0x07c6b28",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PLPROV_REGOBJ",
+   "v130": "0x07a01e0",
+   "v200": "0x07e27c8",
+   "kind": "function",
+   "class": "",
+   "meaning": "Refreshing the list: writing the DB does not redraw it; that is a separate mechanism.",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PLRENEW_FN",
+   "v130": "0x09d1ae8",
+   "v200": "0x0a17120",
+   "kind": "function",
+   "class": "",
+   "meaning": "THE NATIVE REFRESH, one level above the populator",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PLRENEW_CTOR",
+   "v130": "0x09d4ac0",
+   "v200": "0x0a1a0f8",
+   "kind": "function",
+   "class": "",
+   "meaning": "stores vptr 0x26a3f60",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MIX_CH_SELECT",
+   "v130": "0x0a77770",
+   "v200": "0x0abda68",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MIX_CH_CTOR_FN",
+   "v130": "0x0a77a20",
+   "v200": "0x0abdd18",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PM_LP_UPDATE",
+   "v130": "0x0aa9a48",
+   "v200": "0x0aefcd0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MASTER_EXCHANGED",
+   "v130": "0x0aabb78",
+   "v200": "0x0af1ec0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x0c85838",
+   "v200": "0x0d00f08",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FREAD_DEFAULT",
+   "v130": "0x0d58ee0",
+   "v200": "0x0de3c08",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x0d85a08",
+   "v200": "0x0e10800",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FGPR_SETSRC_DEFAULT",
+   "v130": "0x0d9c9d8",
+   "v200": "0x0e277e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "RINGFILL_DEFAULT",
+   "v130": "0x0d9ea00",
+   "v200": "0x0e29660",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FGPROP_DEFAULT",
+   "v130": "0x0d9f320",
+   "v200": "0x0e29f80",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x0da07d8",
+   "v200": "0x0e2b4f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "RSREAD_DEFAULT",
+   "v130": "0x0da2f68",
+   "v200": "0x0e2dc80",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FGPRREAD_DEFAULT",
+   "v130": "0x0da3df0",
+   "v200": "0x0e2eb28",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "OPERATE_DEFAULT",
+   "v130": "0x0dabb48",
+   "v200": "0x0e365a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1176c88",
+   "v200": "0x1230f48",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PLUPD_FACTORY",
+   "v130": "0x11881d8",
+   "v200": "0x12424a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "The updater and its owner (music_library::SqlitePlaylist) are per-operation",
+   "core_hook": "yes"
+  },
+  {
+   "name": "TLC_ENTRY_FN",
+   "v130": "0x1224270",
+   "v200": "0x12df7e8",
+   "kind": "function",
+   "class": "",
+   "meaning": "(cache, i, 0, 0) -> {x0 content_id, x1 skip byte}",
+   "core_hook": ""
+  },
+  {
+   "name": "TRACKCACHE_AT",
+   "v130": "0x12246a0",
+   "v200": "0x12dfc18",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_PLLIST",
+   "v130": "0x12439e8",
+   "v200": "0x12ff178",
+   "kind": "function",
+   "class": "",
+   "meaning": "removePlaylistListCache(u32 parent)",
+   "core_hook": ""
+  },
+  {
+   "name": "PLCACHE_DROP_PL",
+   "v130": "0x1243a58",
+   "v200": "0x12ff1e8",
+   "kind": "function",
+   "class": "",
+   "meaning": "(cache, playlist_id), as remove",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x1243b38",
+   "v200": "0x12ff2c8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_ALBUMS",
+   "v130": "0x1243ba8",
+   "v200": "0x12ff338",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_ARTISTS",
+   "v130": "0x1243c18",
+   "v200": "0x12ff3a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_GENRES",
+   "v130": "0x1243c88",
+   "v200": "0x12ff418",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_LABELS",
+   "v130": "0x1243cf8",
+   "v200": "0x12ff488",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_KEYS",
+   "v130": "0x1243d68",
+   "v200": "0x12ff4f8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_RATINGS",
+   "v130": "0x1243dd8",
+   "v200": "0x12ff568",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_BPMS",
+   "v130": "0x1243e48",
+   "v200": "0x12ff5d8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_ALLRATE",
+   "v130": "0x1243eb8",
+   "v200": "0x12ff648",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_ALLKEY",
+   "v130": "0x1243f28",
+   "v200": "0x12ff6b8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LC_DROP_ALLBPM",
+   "v130": "0x1243f98",
+   "v200": "0x12ff728",
+   "kind": "function",
+   "class": "",
+   "meaning": "Every list a new track can appear in. Cache drops only: EP147 re-reads what",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x12441d8",
+   "v200": "0x12ff968",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_REMOVE_TRACK",
+   "v130": "0x12671d0",
+   "v200": "0x1322908",
+   "kind": "function",
+   "class": "",
+   "meaning": "ADD has no InformationUpdater wrapper; the device updater's add slot is called only by",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_KEYS_FN",
+   "v130": "0x126eab0",
+   "v200": "0x132a1f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "vector<Uuid> (svc, n): result via x8",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_MOVE_TRACK",
+   "v130": "0x1272830",
+   "v200": "0x132df70",
+   "kind": "function",
+   "class": "",
+   "meaning": "InformationUpdater::movePlaylistTrack",
+   "core_hook": ""
+  },
+  {
+   "name": "KEYFAC_DEFAULT",
+   "v130": "0x1381538",
+   "v200": "0x143c760",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "ST_JOG_BENDRESET",
+   "v130": "0x13c1010",
+   "v200": "0x147c228",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_JOG_BEND",
+   "v130": "0x13c1020",
+   "v200": "0x147c238",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "ST_SET_TEMPO",
+   "v130": "0x146a5e0",
+   "v200": "0x1525c80",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_SET_BEND",
+   "v130": "0x146a620",
+   "v200": "0x1525cb0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_SLIP_START",
+   "v130": "0x146c0c0",
+   "v200": "0x1527748",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_SLIP_END",
+   "v130": "0x146dda0",
+   "v200": "0x1529418",
+   "kind": "function",
+   "class": "",
+   "meaning": "RETURN (snaps back); 0x146f7a0 is CANCEL (no snap)",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_SLIP_CANCEL",
+   "v130": "0x146f7a0",
+   "v200": "0x152ae18",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_PLAY_BEND",
+   "v130": "0x14719a0",
+   "v200": "0x152cff8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "VB_SETTER",
+   "v130": "0x14754e8",
+   "v200": "0x1530af0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "DJPUDTOR_DEFAULT",
+   "v130": "0x14a2270",
+   "v200": "0x155d700",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "DJPUCTOR_DEFAULT",
+   "v130": "0x14a2560",
+   "v200": "0x155d9f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "ADDR_DEFAULT",
+   "v130": "0x14ab0d0",
+   "v200": "0x1566500",
+   "kind": "function",
+   "class": "",
+   "meaning": "processBlockInternal entry",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1891d10",
+   "v200": "0x19ef578",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_APP_INIT_FN",
+   "v130": "0x18d8d18",
+   "v200": "0x1a384a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_BOX_REQUEST",
+   "v130": "0x195cc98",
+   "v200": "0x1abfdd0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_STRIP_REQUEST",
+   "v130": "0x1960f70",
+   "v200": "0x1ac4f40",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DISPREFRESH_TIMERCB",
+   "v130": "0x1987038",
+   "v200": "0x1aeb1a0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BROWSE_LISTUPDATE",
+   "v130": "0x19ab6d8",
+   "v200": "0x1b0f8d8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "KNOBEV_FN",
+   "v130": "0x19ac3c8",
+   "v200": "0x1b106c0",
+   "kind": "function",
+   "class": "",
+   "meaning": "EP147's browse-knob turn handler, slot +0x198 of BrowseView / BrowseListView",
+   "core_hook": "yes"
+  },
+  {
+   "name": "KNOBTURN_FN",
+   "v130": "0x19ac568",
+   "v200": "0x1b10860",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "SV_KBL_KEY_ORIG",
+   "v130": "0x19bcf68",
+   "v200": "0x1b21130",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SV_KBL_BS_ORIG",
+   "v130": "0x19bcf80",
+   "v200": "0x1b21148",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WAVE_PAINT",
+   "v130": "0x19d6760",
+   "v200": "0x1b3aaa0",
+   "kind": "function",
+   "class": "",
+   "meaning": "WaveformView::paint",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WV_SET_GRIDADJ",
+   "v130": "0x19d7b60",
+   "v200": "0x1b3bea0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PL_RELAYOUT",
+   "v130": "0x19dd430",
+   "v200": "0x1b3fa60",
+   "kind": "function",
+   "class": "",
+   "meaning": "WaveformView relayout(this)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BP_KBL_KEY_ORIG",
+   "v130": "0x1a29670",
+   "v200": "0x1b8d998",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BP_KBL_BS_ORIG",
+   "v130": "0x1a29830",
+   "v200": "0x1b8db58",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x1ac7848",
+   "v200": "0x1c2ded8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_COMP_SETDATA",
+   "v130": "0x1ac7998",
+   "v200": "0x1c2e028",
+   "kind": "function",
+   "class": "",
+   "meaning": "SourceComponent::setData(this, const Row&)",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_COMP_CTOR",
+   "v130": "0x1ac7e50",
+   "v200": "0x1c2e4e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "SourceComponent::SourceComponent(this, ctx)",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_LISTWIDGET_CTOR",
+   "v130": "0x1ac9268",
+   "v200": "0x1c2f8f8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1ac9cb0",
+   "v200": "0x1c30340",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_CTRL_PUBSEL2",
+   "v130": "0x1aca09c",
+   "v200": "0x1c3072c",
+   "kind": "function",
+   "class": "",
+   "meaning": "sibling: same body, row passed in",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1aca178",
+   "v200": "0x1c30808",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_CTRL_KNOBUP",
+   "v130": "0x1acc7b0",
+   "v200": "0x1c32e40",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "SRC_CTRL_KNOBDOWN",
+   "v130": "0x1acc820",
+   "v200": "0x1c32eb0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1acd240",
+   "v200": "0x1c338d0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x1ace798",
+   "v200": "0x1c34e48",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x1ad0d40",
+   "v200": "0x1c373f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "VS_PAINT_ORIG",
+   "v130": "0x1afde70",
+   "v200": "0x1c67308",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::MouseListener comes first in Component's vtable: mouseMove..mouseDoubleClick",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_WIDGET_PAINT_ORIG",
+   "v130": "0x1b57640",
+   "v200": "0x1cc0c58",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_REBUILD",
+   "v130": "0x1b59b98",
+   "v200": "0x1cc31b0",
+   "kind": "function",
+   "class": "",
+   "meaning": "ctrl: sets both buttons from the type",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MP_RESULT_ORIG",
+   "v130": "0x1b5bab0",
+   "v200": "0x1cc50c8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_OPEN_DIALOG",
+   "v130": "0x1b5bab8",
+   "v200": "0x1cc50d0",
+   "kind": "function",
+   "class": "",
+   "meaning": "(ctrl, String* title, String* body)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_CLICK_ORIG",
+   "v130": "0x1b5bb90",
+   "v200": "0x1cc51a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WWB_CTOR",
+   "v130": "0x1b8f950",
+   "v200": "0x1cf8f50",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WWB_UPDATE_CALLER",
+   "v130": "0x1b93a28",
+   "v200": "0x1cfd028",
+   "kind": "function",
+   "class": "",
+   "meaning": "its ONLY caller; holds the WWB",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_PT6_RGB",
+   "v130": "0x1b948d0",
+   "v200": "0x1cfded0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_PT6_BLUE",
+   "v130": "0x1b949b8",
+   "v200": "0x1cfdfb8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_PT6_3BAND",
+   "v130": "0x1b95e80",
+   "v200": "0x1cff480",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_UPDATE",
+   "v130": "0x1b97d98",
+   "v200": "0x1d01398",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "TLW_GETCELLCOMP",
+   "v130": "0x1ba2e28",
+   "v200": "0x1d0c428",
+   "kind": "function",
+   "class": "",
+   "meaning": "(widget, columnId, row) -> Component",
+   "core_hook": ""
+  },
+  {
+   "name": "HLABEL_PAINT_ORIG",
+   "v130": "0x1bad940",
+   "v200": "0x1d16f40",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LABEL_FN",
+   "v130": "0x1bc5668",
+   "v200": "0x1d2ea98",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "ROWPAINT_ADDR",
+   "v130": "0x1bcfb78",
+   "v200": "0x1d38fa8",
+   "kind": "function",
+   "class": "",
+   "meaning": "paintCell is model slot +0x90 (0x1bdddc0 = `sub x0,x0,#0x30; b 0x1bdcf98`), NOT",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BROWSE_SETROWDATA",
+   "v130": "0x1bdb7e0",
+   "v200": "0x1d447f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "SM_PAINTCELL",
+   "v130": "0x1bdcf98",
+   "v200": "0x1d466f8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "OV_TILE_CTOR",
+   "v130": "0x1c192a0",
+   "v200": "0x1d82a20",
+   "kind": "function",
+   "class": "",
+   "meaning": "player_info_waveform::WaveformWidget ctor",
+   "core_hook": "yes"
+  },
+  {
+   "name": "OV_TILE_OWNER",
+   "v130": "0x1c1fad0",
+   "v200": "0x1d89250",
+   "kind": "function",
+   "class": "",
+   "meaning": "builds the tile; param_3 = deck",
+   "core_hook": "yes"
+  },
+  {
+   "name": "SLTEXT_PAINT_ORIG",
+   "v130": "0x1c348c8",
+   "v200": "0x1d9e3f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BEATFX_WIRE_HELPER",
+   "v130": "0x1d5ef18",
+   "v200": "0x1ec91d8",
+   "kind": "function",
+   "class": "",
+   "meaning": "enclosing fn of the 0x1d5efb8 site",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1d6bc60",
+   "v200": "0x1ed5f28",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_SW_ORIG2",
+   "v130": "0x1d6bff0",
+   "v200": "0x1ed6308",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_SW_ORIG4",
+   "v130": "0x1d6f280",
+   "v200": "0x1ed9d50",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "S4_CTOR",
+   "v130": "0x1d82b08",
+   "v200": "0x1eedca0",
+   "kind": "function",
+   "class": "",
+   "meaning": "gui::waveform::DeckInfo4DeckWidget ctor",
+   "core_hook": "yes"
+  },
+  {
+   "name": "HT_ORIG2",
+   "v130": "0x1d9fb68",
+   "v200": "0x1f0ad70",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_ORIG4",
+   "v130": "0x1da09b0",
+   "v200": "0x1f0c3a0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BEATFX_LENGTH_CTOR",
+   "v130": "0x1ddd8d8",
+   "v200": "0x1f49c08",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXB_LAYOUT",
+   "v130": "0x1dde9e8",
+   "v200": "0x1f4ad18",
+   "kind": "function",
+   "class": "",
+   "meaning": "BeatFxParamWidget layout(this, type, sub)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FX_NAME_UPDATE",
+   "v130": "0x1de0148",
+   "v200": "0x1f4c428",
+   "kind": "function",
+   "class": "",
+   "meaning": "BeatFxTimeWidget name-index writer",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BEATFX_PARAM_CTOR",
+   "v130": "0x1de01d8",
+   "v200": "0x1f4c4b8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BEATFX_TIME_CTOR",
+   "v130": "0x1de1020",
+   "v200": "0x1f4d300",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXB_PAINT",
+   "v130": "0x1de1550",
+   "v200": "0x1f4d830",
+   "kind": "function",
+   "class": "",
+   "meaning": "EffectReverbWidget::paint(this, Graphics&)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXR_FINGER",
+   "v130": "0x1de4ee0",
+   "v200": "0x1f511c0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXR_ZONE",
+   "v130": "0x1de4fb8",
+   "v200": "0x1f51298",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXR_DISPATCH",
+   "v130": "0x1de50e0",
+   "v200": "0x1f513c0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_ROW_UPDATE",
+   "v130": "0x1de5120",
+   "v200": "0x1f51400",
+   "kind": "function",
+   "class": "",
+   "meaning": "per-type row-strip index writer",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1de51f0",
+   "v200": "0x1f514d0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_ROW_CTOR",
+   "v130": "0x1de52c0",
+   "v200": "0x1f515a0",
+   "kind": "function",
+   "class": "",
+   "meaning": "owner widget ctor (captures this)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXH_WRITER2",
+   "v130": "0x1de5d90",
+   "v200": "0x1f52070",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXH_WRITER",
+   "v130": "0x1de5e30",
+   "v200": "0x1f52110",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXH_CTOR",
+   "v130": "0x1de5ea0",
+   "v200": "0x1f52180",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXBODY_CTOR",
+   "v130": "0x1de7b20",
+   "v200": "0x1f53e00",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "FXWIDGET_CTOR",
+   "v130": "0x1dea048",
+   "v200": "0x1f56328",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1deb250",
+   "v200": "0x1f57530",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "TITLE_UPDATE",
+   "v130": "0x1df3ae0",
+   "v200": "0x1f5fdc0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "TITLE_UPDATE_END",
+   "v130": "0x1df4908",
+   "v200": "0x1f60be8",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x1df57c8",
+   "v200": "0x1f61aa8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WAVE_SWITCH",
+   "v130": "0x1df6010",
+   "v200": "0x1f622f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "pad-mode -> which child widget is visible",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_CTOR",
+   "v130": "0x1df6240",
+   "v200": "0x1f62520",
+   "kind": "function",
+   "class": "",
+   "meaning": "PadStatusWidget::PadStatusWidget",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_STEMREF",
+   "v130": "0x1df69f8",
+   "v200": "0x1f62cd8",
+   "kind": "function",
+   "class": "",
+   "meaning": "stems tile refresh, arg = PadStemWidget",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_OVERVIEW",
+   "v130": "0x1dfb328",
+   "v200": "0x1f675c8",
+   "kind": "function",
+   "class": "",
+   "meaning": "FUN_01dfc710, the only caller: setOverview(this, &sharedObj, mode, width).",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_OV_SET",
+   "v130": "0x1dfc710",
+   "v200": "0x1f689b0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_WF_RASTER",
+   "v130": "0x1dfed18",
+   "v200": "0x1f6afb8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "DM_WF3_RASTER",
+   "v130": "0x1dff558",
+   "v200": "0x1f6b808",
+   "kind": "function",
+   "class": "",
+   "meaning": "The beat rulers above and below each waveform (1220x15 ARGB, only writer",
+   "core_hook": "yes"
+  },
+  {
+   "name": "GRID_MAKE",
+   "v130": "0x1dffe10",
+   "v200": "0x1f6c0b8",
+   "kind": "function",
+   "class": "",
+   "meaning": "gridMaker.makeGridImage, 3 callers (Blue/RGB/3Band update)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_RENDER",
+   "v130": "0x1e00dd0",
+   "v200": "0x1f6d048",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVEW_PAINT",
+   "v130": "0x1e071a0",
+   "v200": "0x1f733a8",
+   "kind": "function",
+   "class": "",
+   "meaning": "DetailedWaveformWidget<*>::paint",
+   "core_hook": ""
+  },
+  {
+   "name": "LISTSTATE_FIND",
+   "v130": "0x1e461f8",
+   "v200": "0x1fb25f8",
+   "kind": "function",
+   "class": "",
+   "meaning": "returns &shared_ptr<list state>",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MEDIAOBJ_FIND",
+   "v130": "0x1e46af0",
+   "v200": "0x1fb2ef0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "SM_AGENT_REQ",
+   "v130": "0x1e678f0",
+   "v200": "0x1fd3fa8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MLREQ_FN",
+   "v130": "0x1eaacd8",
+   "v200": "0x20173f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x1ec495c",
+   "v200": "0x2030354",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_CLOSER_FN",
+   "v130": "0x1f05520",
+   "v200": "0x2071608",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_PRODUCER",
+   "v130": "0x1f40998",
+   "v200": "0x20ad318",
+   "kind": "function",
+   "class": "",
+   "meaning": "builds the model (on the MENU press AND on navigation)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BROWSE_LINEBUILD",
+   "v130": "0x1f44418",
+   "v200": "0x20b0ca8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BROWSE_FILLPANE",
+   "v130": "0x1f45660",
+   "v200": "0x20b1d78",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BPMSTATE_CTOR",
+   "v130": "0x1f5da20",
+   "v200": "0x20c9d90",
+   "kind": "function",
+   "class": "",
+   "meaning": "gui::BpmState::BpmState(self, int deck)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "LSCTOR_DEFAULT",
+   "v130": "0x1f9c498",
+   "v200": "0x2109d20",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "LSDTOR_DEFAULT",
+   "v130": "0x1fa16d0",
+   "v200": "0x210edf0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "WAVE_MODEGET",
+   "v130": "0x1fa7a28",
+   "v200": "0x2115140",
+   "kind": "function",
+   "class": "",
+   "meaning": "pad-mode enum getter: FUN_01fa7a28(*(this+0xd0))",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BJ_PADREL_RUN",
+   "v130": "0x2085768",
+   "v200": "0x21f2df8",
+   "kind": "function",
+   "class": "",
+   "meaning": "AsyncTask<releasePad lambda>::run(task)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BJ_PADPRESS_RUN",
+   "v130": "0x2086748",
+   "v200": "0x21f3dd8",
+   "kind": "function",
+   "class": "",
+   "meaning": "AsyncTask<pressPad lambda>::run(task)",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BT_SNK_EV_FN",
+   "v130": "0x211c0e8",
+   "v200": "0x2289588",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "BT_CONNECTED_FN",
+   "v130": "0x211c840",
+   "v200": "0x2289ce0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BT_A2DP_EV_FN",
+   "v130": "0x211c918",
+   "v200": "0x2289db8",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MDUT_NEXTSTEP_LR",
+   "v130": "0x212f988",
+   "v200": "0x229ce28",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "UI60_DIV_SITE",
+   "v130": "0x212fb94",
+   "v200": "0x229d034",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_VIEW_POC",
+   "v130": "0x21c81c0",
+   "v200": "0x2335660",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "TA_DRAG_FN",
+   "v130": "0x21e1090",
+   "v200": "0x234e530",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "VIEWPORT_SETVIEWPOS",
+   "v130": "0x21e3440",
+   "v200": "0x23508e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FLING_REL",
+   "v130": "0x21e4550",
+   "v200": "0x23519f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "LISTBOX_UPDATECONTENT",
+   "v130": "0x21e48b0",
+   "v200": "0x2351d50",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::ListBox::updateContent",
+   "core_hook": "yes"
+  },
+  {
+   "name": "LISTBOX_GETSELECTED",
+   "v130": "0x21e6de0",
+   "v200": "0x2354280",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::ListBox::getSelectedRow(int index)",
+   "core_hook": ""
+  },
+  {
+   "name": "LISTBOX_REPAINTROW",
+   "v130": "0x21e7540",
+   "v200": "0x23549e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::ListBox::repaintRow(int)",
+   "core_hook": ""
+  },
+  {
+   "name": "LISTBOX_SELECTROW",
+   "v130": "0x21e8590",
+   "v200": "0x2355a30",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::ListBox::selectRow(row, dontScroll, deselectOthers)",
+   "core_hook": ""
+  },
+  {
+   "name": "ROWCOMP_PAINT_ORIG",
+   "v130": "0x21ea450",
+   "v200": "0x23578f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "ROW_PAINT_ORIG",
+   "v130": "0x21ea670",
+   "v200": "0x2357b10",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_STREAM_DTOR",
+   "v130": "0x22fb7d0",
+   "v200": "0x2468c70",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JSTR_DTOR",
+   "v130": "0x22fc600",
+   "v200": "0x2469aa0",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::String::~String",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_UUID_DTOR",
+   "v130": "0x230b460",
+   "v200": "0x2478900",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_STREAM_CTOR",
+   "v130": "0x230d790",
+   "v200": "0x247ac30",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_STRING_COPY",
+   "v130": "0x230e3e0",
+   "v200": "0x247b880",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JSTR_COPY",
+   "v130": "0x230f530",
+   "v200": "0x247c9d0",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::String::String(const String&)",
+   "core_hook": ""
+  },
+  {
+   "name": "JSTR_FROM_CSTR",
+   "v130": "0x2333ce0",
+   "v200": "0x24a1180",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::String::String(const char*)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_TIMER_CTOR",
+   "v130": "0x2398900",
+   "v200": "0x2505da0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_STARTTIMER",
+   "v130": "0x239cda0",
+   "v200": "0x250a240",
+   "kind": "function",
+   "class": "",
+   "meaning": "meow::TimerTaskBox::Impl: what actually drives DisplayRefreshCycleTimer. The",
+   "core_hook": "yes"
+  },
+  {
+   "name": "MP_IMG_RELEASE",
+   "v130": "0x23a2e60",
+   "v200": "0x2510300",
+   "kind": "function",
+   "class": "",
+   "meaning": "fn(a0, a1) with the juce::Image sret in x8",
+   "core_hook": ""
+  },
+  {
+   "name": "S4_IMG_DTOR",
+   "v130": "0x23a45f0",
+   "v200": "0x2511a90",
+   "kind": "function",
+   "class": "",
+   "meaning": "Image::~Image()",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_G_EXCLUDECLIP",
+   "v130": "0x23aee40",
+   "v200": "0x251c2e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "excludeClipRegion(const Rectangle<int>&)",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_G_SAVESTATE",
+   "v130": "0x23aeef0",
+   "v200": "0x251c390",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_G_RESTORESTATE",
+   "v130": "0x23aef40",
+   "v200": "0x251c3e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_SETCOLOUR",
+   "v130": "0x23af140",
+   "v200": "0x251c5e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "(Graphics*, Colour*) -- Colour = u32 ARGB",
+   "core_hook": "yes"
+  },
+  {
+   "name": "",
+   "v130": "0x23af680",
+   "v200": "0x251cb20",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_FILLRECTF",
+   "v130": "0x23af6c0",
+   "v200": "0x251cb60",
+   "kind": "function",
+   "class": "",
+   "meaning": "(Graphics*, float x, y, w, h)",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_DRAWRECT",
+   "v130": "0x23afeb0",
+   "v200": "0x251d350",
+   "kind": "function",
+   "class": "",
+   "meaning": "(Graphics*, x, y, w, h, thickness)",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x23b04e0",
+   "v200": "0x251d980",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_IMG_ASSIGN",
+   "v130": "0x23b1410",
+   "v200": "0x251e8b0",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Image assign (dst*, src*)",
+   "core_hook": ""
+  },
+  {
+   "name": "S4_IMG_ASSIGN",
+   "v130": "0x23b1440",
+   "v200": "0x251e8e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "Image& Image::operator=(const Image&)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_FIND_FORMAT",
+   "v130": "0x23b4be0",
+   "v200": "0x2522080",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_DRAWIMAGE",
+   "v130": "0x23de290",
+   "v200": "0x254b730",
+   "kind": "function",
+   "class": "",
+   "meaning": "Graphics::drawImage(img, dx,dy,dw,dh, sx,sy,sw,sh, fillAlpha)",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_IMG_FROM_MEM",
+   "v130": "0x23ed7c0",
+   "v200": "0x255ac60",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce Image-from-PNG, sret in x8",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_IMAGECACHE_GETFROMFILE",
+   "v130": "0x23ee2a0",
+   "v200": "0x255b740",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "DM_SWR_SETFILL",
+   "v130": "0x23f1370",
+   "v200": "0x255e810",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SWR_DRAWGLYPH",
+   "v130": "0x23fde20",
+   "v200": "0x256b2c0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SWR_FILLPATH",
+   "v130": "0x23fe810",
+   "v200": "0x256bcb0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SWR_FILLRECT_F",
+   "v130": "0x2401dd0",
+   "v200": "0x256f270",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SWR_FILLRECT_I",
+   "v130": "0x2402ff0",
+   "v200": "0x2570490",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_EMPTY_STUB",
+   "v130": "0x242d0a0",
+   "v200": "0x259a540",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_BTN_SETNAME",
+   "v130": "0x243d1d0",
+   "v200": "0x25aa670",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ROWCACHE_SETBUF",
+   "v130": "0x243d200",
+   "v200": "0x25aa6a0",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Component::setBufferedToImage(bool)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_SETENABLED",
+   "v130": "0x2465c70",
+   "v200": "0x25d3110",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Component::setEnabled(bool)",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_REPAINT_AREA",
+   "v130": "0x2485d40",
+   "v200": "0x25f31e0",
+   "kind": "function",
+   "class": "",
+   "meaning": "(Component*, const Rectangle<int>*)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_REPAINT",
+   "v130": "0x2488570",
+   "v200": "0x25f5a10",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Component::repaint()",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_BUTTON_CTOR",
+   "v130": "0x24924f0",
+   "v200": "0x25ff990",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_ADD_CHILD",
+   "v130": "0x249d6b0",
+   "v200": "0x260ab50",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Component::addAndMakeVisible(child, zOrder)",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_SETVISIBLE",
+   "v130": "0x249daf0",
+   "v200": "0x260af90",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "PL_SETBOUNDS",
+   "v130": "0x249efe0",
+   "v200": "0x260c480",
+   "kind": "function",
+   "class": "",
+   "meaning": "juce::Component::setBounds(this, x, y, w, h)",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x24f5bc0",
+   "v200": "0x2663060",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x24f6b34",
+   "v200": "0x2663fd4",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "RM_PAINTNOW",
+   "v130": "0x24fa6f0",
+   "v200": "0x2667b90",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "RM_POSTPAINT_LR",
+   "v130": "0x24fac14",
+   "v200": "0x26680b4",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "UI60_SITE",
+   "v130": "0x24fac4c",
+   "v200": "0x26680ec",
+   "kind": "mid-function",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_REPAINT_TIMERCB",
+   "v130": "0x24fb350",
+   "v200": "0x26687f0",
+   "kind": "function",
+   "class": "",
+   "meaning": "",
+   "core_hook": "yes"
+  },
+  {
+   "name": "EP147_RODATA_LO",
+   "v130": "0x25c0aa0",
+   "v200": "0x28fa0c0",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x25e9ba0",
+   "v200": "0x2923200",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PB_VTABLE",
+   "v130": "0x25f9c00",
+   "v200": "0x2933258",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PLRENEW_VPTR",
+   "v130": "0x26a3f60",
+   "v200": "0x29de458",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "slot +0x10 = onPlaylistRenewed() 0x9d1ae8",
+   "core_hook": ""
+  },
+  {
+   "name": "TAGEDIT_VT",
+   "v130": "0x26a4838",
+   "v200": "0x29ded30",
+   "kind": "vtable",
+   "class": "usecase::library_edit::TaglistEditor",
+   "meaning": "usecase::library_edit::TaglistEditor",
+   "core_hook": ""
+  },
+  {
+   "name": "MIX_CH_VT",
+   "v130": "0x26cf590",
+   "v200": "0x2a0a000",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_LP_VT",
+   "v130": "0x26e1b68",
+   "v200": "0x2a1c5d8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "LocalPlayer primary fns",
+   "core_hook": ""
+  },
+  {
+   "name": "BG_USO_VT",
+   "v130": "0x2754518",
+   "v200": "0x2a9cfa8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2798328",
+   "v200": "0x2ae4df8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "AK_VT_MGR",
+   "v130": "0x27b8a50",
+   "v200": "0x2b05708",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FGPR_VTABLE",
+   "v130": "0x27ba108",
+   "v200": "0x2b06dd0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PITCH_VTABLE",
+   "v130": "0x27bb148",
+   "v200": "0x2b07de8",
+   "kind": "vtable",
+   "class": "time_domain::PitchSimpleCrossFade",
+   "meaning": "time_domain::PitchSimpleCrossFade vtable",
+   "core_hook": ""
+  },
+  {
+   "name": "PLUPD_VT",
+   "v130": "0x284ab30",
+   "v200": "0x2b9cbe0",
+   "kind": "vtable",
+   "class": "music_library::SqlitePlaylistUpdater",
+   "meaning": "music_library::SqlitePlaylistUpdater",
+   "core_hook": ""
+  },
+  {
+   "name": "SQLDB_VPTR",
+   "v130": "0x284b2b8",
+   "v200": "0x2b9d368",
+   "kind": "vtable",
+   "class": "music_library::SqliteDataBase",
+   "meaning": "music_library::SqliteDataBase",
+   "core_hook": ""
+  },
+  {
+   "name": "TRACKCACHE_VT",
+   "v130": "0x2854578",
+   "v200": "0x2ba6768",
+   "kind": "vtable",
+   "class": "music_library::TrackListCache",
+   "meaning": "music_library::TrackListCache",
+   "core_hook": ""
+  },
+  {
+   "name": "INFOUPD_VPTR",
+   "v130": "0x2857330",
+   "v200": "0x2ba9520",
+   "kind": "vtable",
+   "class": "music_library::InformationUpdater",
+   "meaning": "music_library::InformationUpdater",
+   "core_hook": ""
+  },
+  {
+   "name": "MLSERVER_VPTR",
+   "v130": "0x285f078",
+   "v200": "0x2bb1268",
+   "kind": "vtable",
+   "class": "music_library::MusicLibraryServer",
+   "meaning": "music_library::MusicLibraryServer",
+   "core_hook": ""
+  },
+  {
+   "name": "ST_SF_VT",
+   "v130": "0x2896178",
+   "v200": "0x2be8c40",
+   "kind": "vtable",
+   "class": "dj_player::SlipFunction",
+   "meaning": "dj_player::SlipFunction (typeinfo 0x2895fb0)",
+   "core_hook": ""
+  },
+  {
+   "name": "VS_ADJ_VT",
+   "v130": "0x2896b90",
+   "v200": "0x2be9658",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "AK_VT_PBU",
+   "v130": "0x289f798",
+   "v200": "0x2bf2268",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DJPU_VTABLE",
+   "v130": "0x289f878",
+   "v200": "0x2bf2348",
+   "kind": "vtable",
+   "class": "dj_player::DjPlayerUnit",
+   "meaning": "dj_player::DjPlayerUnit primary vtable",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2967378",
+   "v200": "0x2cd9620",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_IMGBTN_VT",
+   "v130": "0x29674c8",
+   "v200": "0x2cd9780",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "the image buttons (mode buttons, < >)",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_TIB_VT1",
+   "v130": "0x2967678",
+   "v200": "0x2cd9930",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_TIB_VT2",
+   "v130": "0x29676a8",
+   "v200": "0x2cd9960",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_GOM_VT",
+   "v130": "0x29676d0",
+   "v200": "0x2cd9988",
+   "kind": "vtable",
+   "class": "gui::GuiObjectManager",
+   "meaning": "gui::GuiObjectManager",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_ULO_VT",
+   "v130": "0x29676f0",
+   "v200": "0x2cd99a8",
+   "kind": "vtable",
+   "class": "ui::UiLayerObjects",
+   "meaning": "ui::UiLayerObjects",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_APP_VT",
+   "v130": "0x2968548",
+   "v200": "0x2cda800",
+   "kind": "vtable",
+   "class": "EP147Application",
+   "meaning": "EP147Application",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_BOX_TABLE",
+   "v130": "0x29c2b00",
+   "v200": "0x2d3ad00",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "[id-1]",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_STRIP_TABLE",
+   "v130": "0x29c3b38",
+   "v200": "0x2d3bd78",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "[idx]",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_MODEL_VT",
+   "v130": "0x29c5028",
+   "v200": "0x2d3d268",
+   "kind": "vtable",
+   "class": "gui::disp_data::BrowseMenu",
+   "meaning": "gui::disp_data::BrowseMenu",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x29c98c0",
+   "v200": "0x2d41b00",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x29d4830",
+   "v200": "0x2d4ca88",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BROWSEVIEW_VT",
+   "v130": "0x29d67a0",
+   "v200": "0x2d4ea68",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x29da0e8",
+   "v200": "0x2d523c8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x29daee8",
+   "v200": "0x2d531e8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SV_KBL_VT",
+   "v130": "0x29db4c8",
+   "v200": "0x2d537e8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "SearchView's ISoftwareKeyboard::IListener sub-object",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x29dbec8",
+   "v200": "0x2d541e8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SHORTCUT_VIEW_VT",
+   "v130": "0x29e0f18",
+   "v200": "0x2d59258",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_VIEW_VT",
+   "v130": "0x29e2858",
+   "v200": "0x2d5ab98",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "SourceSelectView vtable; slot 12 = juce::Component::setVisible",
+   "core_hook": ""
+  },
+  {
+   "name": "IMAGESCOMP_VT",
+   "v130": "0x29e9540",
+   "v200": "0x2d61890",
+   "kind": "vtable",
+   "class": "gui::ImagesComponent",
+   "meaning": "gui::ImagesComponent primary vtable",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_VIEW_VT",
+   "v130": "0x29e9790",
+   "v200": "0x2d61ae0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2a19970",
+   "v200": "0x2d91cc0",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SRC_MODEL_VT",
+   "v130": "0x2a92ae0",
+   "v200": "0x2e0b900",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "SourceTableModel vtable",
+   "core_hook": ""
+  },
+  {
+   "name": "VS_WIDGET_VT",
+   "v130": "0x2aa6448",
+   "v200": "0x2e20228",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "S4_CELL_VT",
+   "v130": "0x2abc588",
+   "v200": "0x2e36388",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_WIDGET_VT",
+   "v130": "0x2b37908",
+   "v200": "0x2eb1778",
+   "kind": "vtable",
+   "class": "gui::BrowseMenuWidget",
+   "meaning": "gui::BrowseMenuWidget",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_CTRL_VT",
+   "v130": "0x2b44be8",
+   "v200": "0x2ebea58",
+   "kind": "vtable",
+   "class": "gui::BrowseMenuWidgetController",
+   "meaning": "gui::BrowseMenuWidgetController",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_RESULT_SLOT",
+   "v130": "0x2b44c50",
+   "v200": "0x2ebeac0",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "dialog-result thunk 0x1b5bab0 (this = ctrl+0x10)",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_LOOPLBL_VT",
+   "v130": "0x2b63770",
+   "v200": "0x2edd5e0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_PLAYHEAD_VT",
+   "v130": "0x2b668b8",
+   "v200": "0x2ee0728",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2b66d98",
+   "v200": "0x2ee0c08",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WSCAN_VT",
+   "v130": "0x2b67408",
+   "v200": "0x2ee1278",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "gui::waveform::DetailedWaveformWidget<RGB>",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2b67a78",
+   "v200": "0x2ee18e8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_WWB_VT",
+   "v130": "0x2b6f208",
+   "v200": "0x2ee9078",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_WAVEBOX_VT",
+   "v130": "0x2b6f460",
+   "v200": "0x2ee92d0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WP_VT_BLUE",
+   "v130": "0x2b72f00",
+   "v200": "0x2eecd70",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WP_VT_RGB",
+   "v130": "0x2b72f50",
+   "v200": "0x2eecdc0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WP_VT_3BAND",
+   "v130": "0x2b72fa0",
+   "v200": "0x2eece10",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WSCAN_VT_FIELD",
+   "v130": "0x2b74558",
+   "v200": "0x2eee3c8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "gui::DetailedWaveformFieldWidget (a different class)",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_WAVEOUT_VT",
+   "v130": "0x2b747e0",
+   "v200": "0x2eee650",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2b79058",
+   "v200": "0x2ef2ec8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HIER_MODEL_VT",
+   "v130": "0x2b79158",
+   "v200": "0x2ef2fc8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HLABEL_VT",
+   "v130": "0x2b799c0",
+   "v200": "0x2ef3830",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "TRACKLIST_WIDGET_VT",
+   "v130": "0x2b7f408",
+   "v200": "0x2ef9338",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "paintRowBackground's first argument is neither the widget nor the model: its",
+   "core_hook": ""
+  },
+  {
+   "name": "TRACKLIST_MODEL_VT",
+   "v130": "0x2b7f588",
+   "v200": "0x2ef94c0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "the TableListBoxModel subobject",
+   "core_hook": ""
+  },
+  {
+   "name": "OV_WIDGET_VT",
+   "v130": "0x2b9eb88",
+   "v200": "0x2f18ab8",
+   "kind": "vtable",
+   "class": "gui::OverviewWaveform1200PointWidget",
+   "meaning": "gui::OverviewWaveform1200PointWidget",
+   "core_hook": ""
+  },
+  {
+   "name": "SLTEXT_VT",
+   "v130": "0x2bcdec0",
+   "v200": "0x2f79150",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SKW_VT",
+   "v130": "0x2c29228",
+   "v200": "0x2fd44b8",
+   "kind": "vtable",
+   "class": "gui::SoftwareKeyboardWidget",
+   "meaning": "gui::SoftwareKeyboardWidget",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_HDR_VT",
+   "v130": "0x2c5ad08",
+   "v200": "0x3006a58",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "view child: the status area",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_HDRBTN_VT",
+   "v130": "0x2c5bb40",
+   "v200": "0x3007890",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "its child holding the mode buttons",
+   "core_hook": ""
+  },
+  {
+   "name": "PM_INFO_VT",
+   "v130": "0x2cd4b28",
+   "v200": "0x3084a68",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_SW2_VT",
+   "v130": "0x2ce30d0",
+   "v200": "0x3093008",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "SimpleWaveform2DeckWidget fns (BROWSE strip)",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_SW4_VT",
+   "v130": "0x2ce7c50",
+   "v200": "0x3098688",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_PANELS2_VT",
+   "v130": "0x2cee580",
+   "v200": "0x309f8c0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "its child holding the 2-deck panels",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_PANEL_VT",
+   "v130": "0x2cfe0f0",
+   "v200": "0x30af430",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "a 2-deck DECK panel",
+   "core_hook": ""
+  },
+  {
+   "name": "S4_PARENT_VT",
+   "v130": "0x2cfe5c0",
+   "v200": "0x30af900",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_PANELS_VT",
+   "v130": "0x2d0b700",
+   "v200": "0x30bca40",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "[view+0x428]: left deck panel container",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_DECKBOX2_VT",
+   "v130": "0x2d1b678",
+   "v200": "0x30cc9b8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "the DECK n box, 2 DECK (1,1 54 x 48 = the bar's height)",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_DECKBOX4_VT",
+   "v130": "0x2d1dbe8",
+   "v200": "0x30cef28",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "the DECK n box, 4 DECK (1,1 44 x 38)",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_ONAIR_VT",
+   "v130": "0x2d21548",
+   "v200": "0x30d2888",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "gui::waveform::OnAirWidget: row's top-right, 71 x 20",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_VT2",
+   "v130": "0x2d37158",
+   "v200": "0x30e84b0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "TrackInfo2DeckWidget fns",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_CVT2",
+   "v130": "0x2d37408",
+   "v200": "0x30e8778",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_VT4",
+   "v130": "0x2d387d0",
+   "v200": "0x30ea650",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "TrackInfo4DeckWidget fns",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_CVT4",
+   "v130": "0x2d38a80",
+   "v200": "0x30ea918",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_PI2D_VT",
+   "v130": "0x2d3ca00",
+   "v200": "0x30ef370",
+   "kind": "vtable",
+   "class": "gui::waveform::PlayerInfo2DeckWidget",
+   "meaning": "gui::waveform::PlayerInfo2DeckWidget",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_PI2D_CVT",
+   "v130": "0x2d3cc28",
+   "v200": "0x30ef598",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "PlayerInfo2DeckWidget Component fns",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_PI4D_VT",
+   "v130": "0x2d3d9b8",
+   "v200": "0x30f0328",
+   "kind": "vtable",
+   "class": "gui::waveform::PlayerInfo4DeckWidget",
+   "meaning": "gui::waveform::PlayerInfo4DeckWidget",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_PI4D_CVT",
+   "v130": "0x2d3dbe0",
+   "v200": "0x30f0550",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_PARAM_VT",
+   "v130": "0x2d6c498",
+   "v200": "0x311ee28",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "BeatFxParamWidget vtable (ctor 0x1de01d8)",
+   "core_hook": ""
+  },
+  {
+   "name": "FXB_REVERB_VT",
+   "v130": "0x2d6cac0",
+   "v200": "0x311f450",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FXR_OWNER_VT",
+   "v130": "0x2d72b48",
+   "v200": "0x31254d8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_ROW_TBL",
+   "v130": "0x2d72cb0",
+   "v200": "0x3125640",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "u8..u32? u32 tbl: type -> strip",
+   "core_hook": ""
+  },
+  {
+   "name": "FXH_PARENT_VT",
+   "v130": "0x2d74bb0",
+   "v200": "0x3127540",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "PL_FXSIDE_VT",
+   "v130": "0x2d7a800",
+   "v200": "0x312d190",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "view child at the right: holds \">\"",
+   "core_hook": ""
+  },
+  {
+   "name": "SLIP34_SRC",
+   "v130": "0x2d824e0",
+   "v200": "0x3134e70",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "img_pad_3_4_normal, the untouched copy",
+   "core_hook": ""
+  },
+  {
+   "name": "PADCUE_VT",
+   "v130": "0x2d84b60",
+   "v200": "0x31374f0",
+   "kind": "vtable",
+   "class": "gui::waveform::PadCueWidget",
+   "meaning": "gui::waveform::PadCueWidget (RTTI)",
+   "core_hook": ""
+  },
+  {
+   "name": "PADMODESTATUS_VT",
+   "v130": "0x2d8d300",
+   "v200": "0x313fc90",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SLIP_WIDGET_VT",
+   "v130": "0x2d8d4d8",
+   "v200": "0x313fe68",
+   "kind": "vtable",
+   "class": "gui::waveform::PadSlipLoopWidget",
+   "meaning": "gui::waveform::PadSlipLoopWidget (RTTI)",
+   "core_hook": ""
+  },
+  {
+   "name": "DRUM_TILE_NORM",
+   "v130": "0x2d8d7a0",
+   "v200": "0x3140130",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DRUM_TILE_DOWN",
+   "v130": "0x2d8da20",
+   "v200": "0x31403b0",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "pair 7 down = GREEN DRUM ROLL",
+   "core_hook": ""
+  },
+  {
+   "name": "SLIP_A0_DOWN",
+   "v130": "0x2d8f570",
+   "v200": "0x3141f00",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "pair 0 down = img_pad_1_16_down",
+   "core_hook": ""
+  },
+  {
+   "name": "PADTILE_VT",
+   "v130": "0x2d8f880",
+   "v200": "0x3142210",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SLIP_STEMS0",
+   "v130": "0x2d95250",
+   "v200": "0x3147be0",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "img_pad_vocal_down, straight after",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x2da1c28",
+   "v200": "0x31545b8",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MLREPLY_VT",
+   "v130": "0x2dae640",
+   "v200": "0x3161130",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MP_CLOSER_VT",
+   "v130": "0x2dc1820",
+   "v200": "0x3174628",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BDD_VT",
+   "v130": "0x2dcc3a0",
+   "v200": "0x317f388",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "BROWSE_CREATOR_VT",
+   "v130": "0x2dcc760",
+   "v200": "0x317f748",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LTI_VT",
+   "v130": "0x2dd9288",
+   "v200": "0x318c260",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "LS_VT",
+   "v130": "0x2ddb878",
+   "v200": "0x318ec68",
+   "kind": "vtable",
+   "class": "gui::LoadState",
+   "meaning": "gui::LoadState primary vtable (RTTI); its ctor stores it at +0",
+   "core_hook": ""
+  },
+  {
+   "name": "BPMCTRL_VT",
+   "v130": "0x2dede68",
+   "v200": "0x31a1278",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "_Sp_counted_ptr_inplace<gui::BpmState,...> vtable (RTTI)",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_BOX_VT",
+   "v130": "0x2dfbde0",
+   "v200": "0x31af1e0",
+   "kind": "vtable",
+   "class": "gui::caution::browser::CautionManager",
+   "meaning": "gui::caution::browser::CautionManager",
+   "core_hook": ""
+  },
+  {
+   "name": "BN_STRIP_VT",
+   "v130": "0x2dfbe08",
+   "v200": "0x31af208",
+   "kind": "vtable",
+   "class": "gui::caution::simple::CautionManager",
+   "meaning": "gui::caution::simple::CautionManager",
+   "core_hook": ""
+  },
+  {
+   "name": "BJ_PADPRESS_VT",
+   "v130": "0x2e15028",
+   "v200": "0x31c8448",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "its vtable (address point)",
+   "core_hook": ""
+  },
+  {
+   "name": "BJ_PADREL_VT",
+   "v130": "0x2e15058",
+   "v200": "0x31c8478",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "MAINDISP_VT",
+   "v130": "0x2e41538",
+   "v200": "0x31f4a58",
+   "kind": "vtable",
+   "class": "device_adapter::MainDisplayUpdateTimer",
+   "meaning": "device_adapter::MainDisplayUpdateTimer",
+   "core_hook": ""
+  },
+  {
+   "name": "ROW_VT",
+   "v130": "0x2e5fe90",
+   "v200": "0x32133a0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "meow::TouchableListBox::Row",
+   "core_hook": ""
+  },
+  {
+   "name": "LIST_VT",
+   "v130": "0x2e600a0",
+   "v200": "0x32135b0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "ROWCOMP_VT",
+   "v130": "0x2e605b8",
+   "v200": "0x3213ac8",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "meow::TouchableTableListBox::RowComp",
+   "core_hook": ""
+  },
+  {
+   "name": "TIMERTASKBOX_VT",
+   "v130": "0x2e67bb0",
+   "v200": "0x321b0c0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "JUCE_CALLTIMERS_SLOT",
+   "v130": "0x3141a38",
+   "v200": "0x34f4f18",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SWR_VTABLE",
+   "v130": "0x3142bc0",
+   "v200": "0x34f60a0",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "DM_SPD_VTABLE",
+   "v130": "0x3142d48",
+   "v200": "0x34f6228",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SCCI_VT",
+   "v130": "0x314cae0",
+   "v200": "0x34fffc0",
+   "kind": "vtable",
+   "class": "juce::StandardCachedComponentImage",
+   "meaning": "juce::StandardCachedComponentImage",
+   "core_hook": ""
+  },
+  {
+   "name": "RM_VT",
+   "v130": "0x315e560",
+   "v200": "0x3511a40",
+   "kind": "vtable",
+   "class": "",
+   "meaning": "juce LinuxRepaintManager (Timer)",
+   "core_hook": ""
+  },
+  {
+   "name": "EP147_RODATA_HI",
+   "v130": "0x3480128",
+   "v200": "0x384b430",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "HT_GOT_XNEXTEVENT",
+   "v130": "0x3b25a60",
+   "v200": "0x3f84a88",
+   "kind": "rodata",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "FX_NAME_ART_TBL",
+   "v130": "0x3b35728",
+   "v200": "0x3f953b8",
+   "kind": "data",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "",
+   "v130": "0x3b35f40",
+   "v200": "0x3f95bd0",
+   "kind": "data",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "SLIP_TBL",
+   "v130": "0x3b35fb8",
+   "v200": "0x3f95c48",
+   "kind": "data",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  },
+  {
+   "name": "WP_COLTAB",
+   "v130": "0x3b8dcb8",
+   "v200": "0x3ff5f50",
+   "kind": "data",
+   "class": "",
+   "meaning": "",
+   "core_hook": ""
+  }
+ ]
+}

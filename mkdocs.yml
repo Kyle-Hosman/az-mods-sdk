@@ -1,0 +1,100 @@
+site_name: AZ-MODS Docs
+site_description: Build, test and publish mods for the XDJ-AZ.
+site_url: https://kyle-hosman.github.io/az-mods-sdk/
+repo_url: https://github.com/Kyle-Hosman/az-mods-sdk
+repo_name: az-mods-sdk
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  icon:
+    logo: material/puzzle-outline
+    repo: fontawesome/brands/github
+  favicon: assets/favicon.svg
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.footer
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - assets/extra.css
+
+markdown_extensions:
+  - md_in_html
+  - github-callouts
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+exclude_docs: |
+  README.md
+  requirements.txt
+  _hooks.py
+  __pycache__/
+
+hooks:
+  - docs/_hooks.py
+
+validation:
+  links:
+    not_found: warn
+    anchors: warn
+
+nav:
+  - index.md
+  - Guide:
+      - Getting started: 01-getting-started.md
+      - Set up your environment: 02-setup.md
+      - Your first mod: 03-first-mod.md
+      - Testing on your deck: 04-testing.md
+      - Hooks and firmware tags: 05-hooks-and-firmware.md
+      - Packaging and publishing: 06-publishing.md
+      - Guidelines: GUIDELINES.md
+      - FAQ and troubleshooting: 07-faq.md
+      - XDJ-AZ emulator: 08-emulator.md
+      - Logs: 09-logs.md
+  - Reference:
+      - API reference: API.md
+      - Mod Menu keys: MOD-MENU-KEYS.md
+      - The deck program: reference.md
+      - Addresses: reference-addresses.md
+      - Objects: reference-objects.md
+      - Control frames: reference-frames.md
+      - Reading the program: reference-static-re.md
+      - AZ-MODS internals: internals.md

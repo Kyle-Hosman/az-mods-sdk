@@ -1,0 +1,26 @@
+# clang-format config for the C and C++ sources. Format with clang-format 21.1.8 exactly
+# (pip install clang-format==21.1.8): other versions format differently.
+#
+# Tuned to the code as it already reads: the values below are the ones a reformat of the
+# existing sources changes the fewest lines with.
+BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 0
+PointerAlignment: Right
+DerivePointerAlignment: false
+IndentCaseLabels: false
+SpaceBeforeParens: ControlStatements
+SortIncludes: Never
+ReflowComments: false
+AlignTrailingComments:
+  Kind: Leave
+BreakBeforeBraces: Linux
+SpaceAfterCStyleCast: false
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+Cpp11BracedListStyle: false
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortBlocksOnASingleLine: Always
+AllowShortEnumsOnASingleLine: true

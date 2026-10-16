@@ -1,0 +1,7 @@
+out/
+dist/
+.scratch/
+__pycache__/
+*.pyc
+site/
+out-debug/
