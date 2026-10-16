@@ -4,6 +4,10 @@ name: core header
 # the AZ-MODS core at the commit named in include/CORE-COMMIT, so a mod built with this SDK
 # matches what the deck runs.
 on:
+  push:
+    branches: [main]
+    paths:
+      - include/**
   pull_request:
     paths:
       - include/**
