@@ -123,8 +123,8 @@ This is the quarantine: see [Crashes, quarantine and recovery](04-testing.md#cra
 
 Run `azmod-pack repo check OWNER/REPO --download`. Then check that `version` is
 `MAJOR.MINOR.PATCH` (an entry with any other version is skipped) and that no other repository
-the deck reads offers the same id (a deck shows each id once). Browse lists at most 128 mods. **Refresh** on the deck
-reads the Mod Index and the repository files again.
+the deck reads offers the same id (a deck shows each id once). Browse lists at most 128 mods. A deck reads the Mod Index and the repository files again
+when Community Mods opens (at most every 10 minutes, at once after a failed read).
 
 ### Do users have to restart after installing?
 

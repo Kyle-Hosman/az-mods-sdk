@@ -218,8 +218,8 @@ Then add the repository on a deck and install from it ([Testing on your deck](04
 | `updated` | the release date, `YYYY-MM-DD` |
 | `category`, `license`, `min_core`, `description` | from `azmod.json` when present |
 | `assets_kb` | when the mod has `assets/`: what it keeps on the USB, shown before install |
-| `beta` | `true` when `azmod.json` says so; written only then, and a deck reads an absent field as false |
-| `screenshots` | when the mod has `shots/`: 1 to 3 `https://` URLs of the PNGs, shown on the mod's page |
+| `beta` | `true` when `azmod.json` says so; written only then, and a deck reads an absent field as false. Decks show it from AZ-MODS 1.2.5; older ones ignore it |
+| `screenshots` | when the mod has `shots/`: 1 to 3 `https://` URLs of the PNGs, shown on the mod's page (AZ-MODS 1.2.5 and newer; older decks ignore them) |
 
 ## The package
 
