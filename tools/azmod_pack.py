@@ -452,7 +452,7 @@ def check_firmware(report, fw, hooks, where):
 
 
 MANIFEST_KEYS = {"azmod", "id", "name", "version", "author", "summary", "description",
-                 "license", "source", "api", "firmware", "hooks", "min_core", "category"}
+                 "license", "source", "api", "firmware", "hooks", "min_core", "category", "beta"}
 
 
 def check_manifest(m, report):
@@ -490,6 +490,8 @@ def check_manifest(m, report):
     cat = m.get("category")
     if cat is not None and cat not in CATEGORIES:
         report.error(f"{w}: \"category\" must be one of {sorted(CATEGORIES)}")
+    if "beta" in m and not isinstance(m["beta"], bool):
+        report.error(f"{w}: \"beta\" must be true or false")
     for k in sorted(set(m) - MANIFEST_KEYS):
         report.warn(f"{w}: unknown key \"{k}\" (ignored by the deck)")
 
@@ -530,8 +532,16 @@ def check_manifest_bytes(raw, report):
 ICON_CHUNKS = {b"IHDR", b"PLTE", b"tRNS", b"sRGB", b"gAMA", b"pHYs", b"cHRM", b"IDAT", b"IEND"}
 
 
-def icon_for_deck(data):
-    """(bytes the deck accepts, None) or (None, the reason it cannot be made acceptable)."""
+# Screenshots follow the same PNG rules with a larger frame and a byte cap on the compacted file.
+SHOT_MAX_W, SHOT_MAX_H = 1280, 800
+SHOT_MAX_BYTES = 1048576
+MAX_SHOTS = 3
+
+
+def icon_for_deck(data, max_w=512, max_h=512, max_bytes=None):
+    """(bytes the deck accepts, None) or (None, the reason it cannot be made acceptable).
+
+    The defaults are the icon limits. max_bytes, when given, caps the compacted result."""
     if len(data) < 33 or data[:8] != b"\x89PNG\r\n\x1a\n":
         return None, "not a PNG file"
     out, off, ihdr = [data[:8]], 8, False
@@ -549,13 +559,18 @@ def icon_for_deck(data):
                 return None, "save it as an 8-bit RGBA (or RGB) PNG; 16-bit and grayscale are not shown"
             if interlace:
                 return None, "save it without interlacing (\"progressive\" / \"Adam7\" off)"
-            if w > 512 or h > 512:
-                return None, "it is larger than 512 x 512"
+            if w > max_w or h > max_h:
+                return None, f"it is larger than {max_w} x {max_h}"
             ihdr = True
         if t in ICON_CHUNKS:
             out.append(data[off:off + 12 + n])
         if t == b"IEND":
-            return (b"".join(out), None) if ihdr else (None, "no image header")
+            if not ihdr:
+                return None, "no image header"
+            res = b"".join(out)
+            if max_bytes is not None and len(res) > max_bytes:
+                return None, f"it is {len(res)} bytes without metadata; the limit is {max_bytes}"
+            return res, None
         off += 12 + n
     return None, "the file is cut short (no IEND)"
 
@@ -579,9 +594,18 @@ def check_icon(data, report, name="icon.png", strict=False):
         report.error(f"{name}: holds metadata chunks the deck refuses (package it with azmod-pack)")
 
 
+def check_shot(data, report, name, strict=False):
+    """A screenshot for the mod's page on the deck: 1280x800 at most, 1 MB at most."""
+    deck, why = icon_for_deck(data, SHOT_MAX_W, SHOT_MAX_H, SHOT_MAX_BYTES)
+    if why:
+        report.error(f"{name}: the deck cannot show it: {why}")
+    elif strict and deck != data:
+        report.error(f"{name}: holds metadata chunks the deck refuses (package it with azmod-pack)")
+
+
 REPO_ENTRY_KEYS = {"id", "name", "version", "author", "summary", "icon", "package", "sha256",
                    "size", "firmware", "hooks", "source", "updated", "category", "license",
-                   "min_core", "description", "assets_kb"}
+                   "min_core", "description", "assets_kb", "beta", "screenshots"}
 
 
 def check_repo_entry(e, report, where):
@@ -621,6 +645,14 @@ def check_repo_entry(e, report, where):
     cat = e.get("category")
     if cat is not None and cat not in CATEGORIES:
         report.error(f"{where}: \"category\" must be one of {sorted(CATEGORIES)}")
+    if "beta" in e and not isinstance(e["beta"], bool):
+        report.error(f"{where}: \"beta\" must be true or false")
+    if "screenshots" in e:
+        sh = e["screenshots"]
+        if not isinstance(sh, list) or not 1 <= len(sh) <= MAX_SHOTS:
+            report.error(f"{where}: \"screenshots\" must be a list of 1 to {MAX_SHOTS} https:// URLs")
+        elif not all(_is_https(u) for u in sh):
+            report.error(f"{where}: every \"screenshots\" entry must be an https:// URL")
     for k in sorted(set(e) - REPO_ENTRY_KEYS):
         report.warn(f"{where}: unknown key \"{k}\"")
 
@@ -726,6 +758,8 @@ def validate_package(path):
         check_icon(members.get("icon.png"), r, strict=True)   # inside a package: exactly what the deck gets
         allowed = {"azmod.json", f"{mid}.so", "icon.png", "LICENSE"}
         check_assets([(n, len(d)) for n, d in members.items() if n.startswith("assets/")], r)
+        if sum(1 for n in members if n.startswith("shots/")) > MAX_SHOTS:
+            r.error(f"the package has more than {MAX_SHOTS} screenshots in shots/")
         if len(members) > MAX_PKG_FILES:
             r.error(f"the package has {len(members)} files; the deck installs at most {MAX_PKG_FILES}")
         if sum(len(d) for d in members.values()) > MAX_UNPACKED:
@@ -738,7 +772,7 @@ def validate_package(path):
                         "MODS/community-mods/<id>/data/ for the mod and keeps it across updates")
                 continue
             if name.startswith("shots/") and name.endswith(".png") and name.count("/") == 1:
-                check_icon_like_png(members[name], r, name)
+                check_shot(members[name], r, name, strict=True)
                 continue
             r.error(f"package member {name!r} is not allowed (only azmod.json, {mid}.so, "
                     "icon.png, LICENSE, shots/*.png and assets/...)")
@@ -877,9 +911,11 @@ def validate_dir(moddir):
             check_icon(f.read(), r)
     if lic is None:
         r.warn("no LICENSE file; add one so people know how they may use your code")
+    if len(shots) > MAX_SHOTS:
+        r.error(f"shots/ holds {len(shots)} PNG files; the deck shows at most {MAX_SHOTS}")
     for s in shots:
         with open(s, "rb") as f:
-            check_icon_like_png(f.read(), r, os.path.relpath(s, moddir))
+            check_shot(f.read(), r, os.path.relpath(s, moddir))
     assets = find_assets(moddir)
     check_assets([(n, os.path.getsize(p)) for n, p in assets], r)
     return r, m
@@ -928,7 +964,7 @@ def package_ext():
     return ".azmod"
 
 
-def make_entry(m, sha, size, package_url, icon_url, updated=None, assets_bytes=0):
+def make_entry(m, sha, size, package_url, icon_url, updated=None, assets_bytes=0, shot_urls=None):
     e = {
         "id": m["id"], "name": m["name"], "version": m["version"], "author": m["author"],
         "summary": m["summary"], "icon": icon_url, "package": package_url,
@@ -939,6 +975,10 @@ def make_entry(m, sha, size, package_url, icon_url, updated=None, assets_bytes=0
     for k in ("category", "license", "min_core", "description"):   # description: the app and deck show it
         if k in m:
             e[k] = m[k]
+    if m.get("beta") is True:   # written only when true; a deck reads absent as false
+        e["beta"] = True
+    if shot_urls:
+        e["screenshots"] = list(shot_urls)
     if assets_bytes:   # the deck says "Keeps N MB of files on your USB stick" before install
         e["assets_kb"] = (assets_bytes + 1023) // 1024
     return e
@@ -965,7 +1005,9 @@ def cmd_package(args):
              (f"{m['id']}.so", _read(so)), ("icon.png", icon_bytes)]
     if lic:
         files.append(("LICENSE", _read(lic)))
-    files += [("shots/" + os.path.basename(s), _read(s)) for s in shots]
+    shot_bytes = [icon_for_deck(_read(s), SHOT_MAX_W, SHOT_MAX_H, SHOT_MAX_BYTES)[0] or _read(s)
+                  for s in shots]   # metadata chunks left out (validated above)
+    files += [("shots/" + os.path.basename(s), b) for s, b in zip(shots, shot_bytes)]
     files += [(n, _read(p)) for n, p in find_assets(moddir)]
 
     out_dir = os.path.abspath(args.out or os.path.join(moddir, "dist"))
@@ -976,6 +1018,10 @@ def cmd_package(args):
     icon_name = base + "-icon.png"
     with open(os.path.join(out_dir, icon_name), "wb") as f:
         f.write(icon_bytes)
+    shot_names = [f"{base}-shot{i}.png" for i in range(1, len(shots) + 1)]
+    for sn, b in zip(shot_names, shot_bytes):
+        with open(os.path.join(out_dir, sn), "wb") as f:
+            f.write(b)
 
     pr, _ = validate_package(pkg)
     if not pr.ok:
@@ -985,18 +1031,22 @@ def cmd_package(args):
     sha = hashlib.sha256(data).hexdigest()
     if args.package_url:
         pkg_url = args.package_url
-        icon_url = args.icon_url or pkg_url.rsplit("/", 1)[0] + "/" + icon_name
+        pkg_dir = pkg_url.rsplit("/", 1)[0]
+        icon_url = args.icon_url or pkg_dir + "/" + icon_name
+        shot_urls = [pkg_dir + "/" + sn for sn in shot_names]
     elif args.github:
         tag = args.tag or f"{m['id']}-{m['version']}"
         rel = f"https://github.com/{args.github}/releases/download/{tag}"
         pkg_url, icon_url = f"{rel}/{os.path.basename(pkg)}", f"{rel}/{icon_name}"
+        shot_urls = [f"{rel}/{sn}" for sn in shot_names]
     else:
         pkg_url = icon_url = None
+        shot_urls = []
     print(f"package: {pkg}")
     print(f"sha256:  {sha}")
     print(f"size:    {len(data)}")
     if pkg_url:
-        entry = make_entry(m, sha, len(data), pkg_url, icon_url,
+        entry = make_entry(m, sha, len(data), pkg_url, icon_url, shot_urls=shot_urls,
                            assets_bytes=sum(os.path.getsize(p) for _, p in find_assets(moddir)))
         ep = os.path.join(out_dir, base + ".entry.json")
         with open(ep, "w", encoding="utf-8", newline="\n") as f:

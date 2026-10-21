@@ -218,6 +218,8 @@ Then add the repository on a deck and install from it ([Testing on your deck](04
 | `updated` | the release date, `YYYY-MM-DD` |
 | `category`, `license`, `min_core`, `description` | from `azmod.json` when present |
 | `assets_kb` | when the mod has `assets/`: what it keeps on the USB, shown before install |
+| `beta` | `true` when `azmod.json` says so; written only then, and a deck reads an absent field as false |
+| `screenshots` | when the mod has `shots/`: 1 to 3 `https://` URLs of the PNGs, shown on the mod's page |
 
 ## The package
 
@@ -230,7 +232,7 @@ same bytes) with these files at its root:
 | `<id>.so` | the library |
 | `icon.png` | 256x256 PNG, 8-bit RGBA or RGB, not interlaced; metadata chunks such as color profiles are dropped when packaging |
 | `LICENSE` | optional |
-| `shots/*.png` | optional screenshots for the mod's page |
+| `shots/*.png` | optional, up to 3 screenshots for the mod's page: PNG, 8-bit RGB, RGBA or palette, not interlaced, at most 1280x800 and 1 MB (1048576 bytes) once metadata chunks are dropped, which packaging does |
 | `assets/...` | optional files the mod reads through `assets_dir()` (samples, images, presets), installed to the USB |
 
 | Package limit | |
@@ -265,6 +267,7 @@ objects and no repeated keys.
 | `hooks` | yes | `true` only with tags; `false` for `["any"]` |
 | `min_core` | no | the lowest AZ-MODS version the mod needs (`AZ_CORE_VERSION` in `azmod-mod.h`) |
 | `category` | no | `visual`, `controls`, `audio` or `tools` (the Browse filter) |
+| `beta` | no | `true` or `false`. `true` says the mod is not proven stable yet; the deck marks it BETA in Browse and on its page |
 
 A deck also refuses to install a package whose `azmod.json` `version` differs from the entry's.
 
@@ -318,7 +321,7 @@ prints the SDK version.
 | `build [MODDIR] [--image IMAGE] [--any-image] [--include DIR] [--no-validate] [-- MAKE_ARGS]` | build in the container (`az-mods-sdk:1`, built on first use), then validate. Refuses an image not built from this SDK's `docker/` unless `--any-image` ([setup](02-setup.md#the-sdk-image)). `MAKE_ARGS` go to make, for example `DEBUG=1 OUT=out-debug` |
 | `image [--image IMAGE]` | build or rebuild the container from this SDK's `docker/`, labeled with its hash |
 | `validate MODDIR \| FILE.azmod ...` | the checks below |
-| `package [MODDIR] [--github OWNER/REPO] [--tag TAG] [--out DIR] [--package-url URL] [--icon-url URL]` | validate, then write `<id>-<version>.azmod`, its icon and (with `--github` or `--package-url`, which refuse placeholders) the repository file entry (default `MODDIR/dist`) |
+| `package [MODDIR] [--github OWNER/REPO] [--tag TAG] [--out DIR] [--package-url URL] [--icon-url URL]` | validate, then write `<id>-<version>.azmod`, its icon, its screenshots (`-shot1.png` ...) and (with `--github` or `--package-url`, which refuse placeholders) the repository file entry (default `MODDIR/dist`) |
 | `repo add REPO.json ENTRY.json [--name N --maintainer M --homepage URL]` | add or replace an entry; the three options create a new repository file |
 | `repo check REPO.json \| OWNER/REPO \| URL [--download] [--cafile PEM]` | validate a repository file, and with `--download` every package; `--cafile` trusts one more CA |
 | `list check azmods-repos.json [--download] [--cafile PEM]` | validate the Mod Index and every repository on it |

@@ -89,7 +89,7 @@ jobs:
         run: |
           gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || \
             gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes ""
-          gh release upload "$GITHUB_REF_NAME" dist/*.azmod dist/*-icon.png --clobber
+          gh release upload "$GITHUB_REF_NAME" dist/*.azmod dist/*-icon.png dist/*-shot*.png --clobber
 
       - name: The azmods-repo.json entry
         run: cat dist/*.entry.json

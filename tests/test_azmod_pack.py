@@ -355,6 +355,213 @@ class IconChecks(unittest.TestCase):
         self.assertFalse(r.ok)
 
 
+def png(w, h, interlace=0, extra=b"", idat=None, ct=6):
+    """A small valid PNG (8-bit, color type ct) built by hand; extra chunks go before IDAT."""
+    import zlib
+
+    def chunk(t, body):
+        return (struct.pack(">I", len(body)) + t + body
+                + struct.pack(">I", zlib.crc32(t + body) & 0xffffffff))
+    bpp = {2: 3, 3: 1, 6: 4}[ct]
+    raw = idat if idat is not None else zlib.compress((b"\0" + b"\x40" * (w * bpp)) * h)
+    plte = chunk(b"PLTE", b"\0\0\0") if ct == 3 else b""
+    return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, ct, 0, 0, interlace))
+            + plte + extra + chunk(b"IDAT", raw) + chunk(b"IEND", b""))
+
+
+def text_chunk():
+    import zlib
+    body = b"Comment\0hello"
+    return (struct.pack(">I", len(body)) + b"tEXt" + body
+            + struct.pack(">I", zlib.crc32(b"tEXt" + body) & 0xffffffff))
+
+
+def shot_report(data):
+    r = ap.Report()
+    ap.check_shot(data, r, "shots/a.png")
+    return r
+
+
+class ShotChecks(unittest.TestCase):
+    def test_valid_sizes_and_types_pass(self):
+        for w, h, ct in ((1280, 800, 6), (640, 400, 2), (10, 10, 3), (1, 1, 6)):
+            r = shot_report(png(w, h, ct=ct))
+            self.assertTrue(r.ok, (w, h, ct, r.errors))
+
+    def test_too_wide_or_tall_refused(self):
+        self.assertTrue(any("1280 x 800" in e for e in shot_report(png(1281, 800)).errors))
+        self.assertFalse(shot_report(png(1280, 801)).ok)
+
+    def test_interlaced_refused(self):
+        self.assertTrue(any("interlacing" in e for e in shot_report(png(100, 100, interlace=1)).errors))
+
+    def test_not_a_png_refused(self):
+        self.assertFalse(shot_report(b"GIF89a" + b"\0" * 60).ok)
+
+    def test_byte_cap_counts_the_compacted_file(self):
+        big = os.urandom(ap.SHOT_MAX_BYTES + 1)
+        self.assertTrue(any("limit is" in e for e in shot_report(png(100, 100, idat=big)).errors))
+        # control: exactly at the cap passes; metadata does not count toward it
+        at = png(100, 100, idat=os.urandom(ap.SHOT_MAX_BYTES - len(png(100, 100, idat=b""))))
+        self.assertEqual(len(at), ap.SHOT_MAX_BYTES)
+        self.assertTrue(shot_report(at).ok)
+        padded = png(100, 100, extra=text_chunk() * 3, idat=os.urandom(ap.SHOT_MAX_BYTES - 200))
+        self.assertTrue(shot_report(padded).ok, shot_report(padded).errors)
+
+    def test_icon_limits_are_unchanged(self):
+        self.assertIsNone(ap.icon_for_deck(png(512, 512))[1])
+        self.assertIn("512 x 512", ap.icon_for_deck(png(513, 512))[1])
+        self.assertIsNone(ap.icon_for_deck(png(512, 512, idat=os.urandom(2 << 20)))[1])
+
+
+class BetaChecks(unittest.TestCase):
+    def test_beta_must_be_boolean(self):
+        for good in (True, False):
+            m = manifest()
+            m["beta"] = good
+            r = ap.Report()
+            ap.check_manifest(m, r)
+            self.assertTrue(r.ok, r.errors)
+            self.assertFalse(r.warnings)
+        for bad in ("true", 1, None, [True]):
+            m = manifest()
+            m["beta"] = bad
+            r = ap.Report()
+            ap.check_manifest(m, r)
+            self.assertTrue(any('"beta" must be true or false' in e for e in r.errors), bad)
+
+    def test_entry_fields(self):
+        base = {"beta": True, "screenshots": ["https://x.example/a.png"]}
+        def errs(**kw):
+            e = self.entry()
+            e.update(kw)
+            r = ap.Report()
+            ap.check_repo_entry(e, r, "entry")
+            return r
+        self.assertTrue(errs(**base).ok, errs(**base).errors)
+        self.assertFalse(errs(**base).warnings)
+        self.assertFalse(errs(beta="yes").ok)
+        self.assertFalse(errs(screenshots=[]).ok)
+        self.assertFalse(errs(screenshots=["https://x.example/%d.png" % i for i in range(4)]).ok)
+        self.assertFalse(errs(screenshots=["http://x.example/a.png"]).ok)
+        self.assertFalse(errs(screenshots="https://x.example/a.png").ok)
+
+    def entry(self):
+        with ModDir() as md:
+            out = os.path.join(md.td, "dist")
+            rc, text = run(["package", md.dir, "--out", out, "--github", "someone/az-mods"])
+            self.assertEqual(rc, 0, text)
+            with open(os.path.join(out, "hello-az-1.0.0.entry.json")) as f:
+                return json.load(f)
+
+
+class ShotPackaging(unittest.TestCase):
+    def add_shots(self, md, datas):
+        os.makedirs(os.path.join(md.dir, "shots"), exist_ok=True)
+        for i, d in enumerate(datas):
+            with open(os.path.join(md.dir, "shots", "s%d.png" % (i + 1)), "wb") as f:
+                f.write(d)
+
+    def test_valid_shots_package_with_exact_entry_and_files(self):
+        def mut(m):
+            m["beta"] = True
+        with ModDir(mutate=mut) as md:
+            raw = [png(800, 600, extra=text_chunk()), png(1280, 800)]
+            self.add_shots(md, raw)
+            out = os.path.join(md.td, "dist")
+            rc, text = run(["package", md.dir, "--out", out, "--github", "someone/az-mods"])
+            self.assertEqual(rc, 0, text)
+            rel = "https://github.com/someone/az-mods/releases/download/hello-az-1.0.0"
+            with open(os.path.join(out, "hello-az-1.0.0.entry.json")) as f:
+                entry = json.load(f)
+            self.assertIs(entry["beta"], True)
+            self.assertEqual(entry["screenshots"],
+                             [rel + "/hello-az-1.0.0-shot1.png", rel + "/hello-az-1.0.0-shot2.png"])
+            # published bytes are the compacted ones
+            with open(os.path.join(out, "hello-az-1.0.0-shot1.png"), "rb") as f:
+                self.assertEqual(f.read(), ap.icon_for_deck(raw[0], 1280, 800)[0])
+            self.assertNotEqual(ap.icon_for_deck(raw[0], 1280, 800)[0], raw[0])
+            with open(os.path.join(out, "hello-az-1.0.0-shot2.png"), "rb") as f:
+                self.assertEqual(f.read(), raw[1])
+            self.assertFalse(os.path.exists(os.path.join(out, "hello-az-1.0.0-shot3.png")))
+            r = ap.Report()
+            ap.check_repo_entry(entry, r, "entry")
+            self.assertTrue(r.ok, r.errors)
+            r, _ = ap.validate_package(os.path.join(out, "hello-az-1.0.0.azmod"))
+            self.assertTrue(r.ok, r.errors)
+            if ap.PACKAGE_FORMAT == "zip":
+                with zipfile.ZipFile(os.path.join(out, "hello-az-1.0.0.azmod")) as z:
+                    self.assertEqual(z.read("shots/s1.png"), ap.icon_for_deck(raw[0], 1280, 800)[0])
+
+    def test_package_url_dir_is_the_shot_base(self):
+        with ModDir() as md:
+            self.add_shots(md, [png(100, 100)])
+            out = os.path.join(md.td, "dist")
+            rc, text = run(["package", md.dir, "--out", out, "--package-url",
+                            "https://h.example/d/hello-az-1.0.0.azmod"])
+            self.assertEqual(rc, 0, text)
+            with open(os.path.join(out, "hello-az-1.0.0.entry.json")) as f:
+                entry = json.load(f)
+            self.assertEqual(entry["screenshots"], ["https://h.example/d/hello-az-1.0.0-shot1.png"])
+            self.assertNotIn("beta", entry)
+
+    def test_no_shots_no_fields_no_files(self):
+        entry = BetaChecks().entry()
+        self.assertNotIn("screenshots", entry)
+        self.assertNotIn("beta", entry)
+
+    def test_beta_false_is_not_written(self):
+        def mut(m):
+            m["beta"] = False
+        with ModDir(mutate=mut) as md:
+            out = os.path.join(md.td, "dist")
+            rc, text = run(["package", md.dir, "--out", out, "--github", "someone/az-mods"])
+            self.assertEqual(rc, 0, text)
+            with open(os.path.join(out, "hello-az-1.0.0.entry.json")) as f:
+                self.assertNotIn("beta", json.load(f))
+
+    def test_validate_refuses_bad_shots(self):
+        cases = {"too wide": [png(1281, 100)], "interlaced": [png(100, 100, interlace=1)],
+                 "four shots": [png(100, 100)] * 4}
+        with ModDir() as md:
+            self.add_shots(md, [png(100, 100)])
+            r, _ = ap.validate_dir(md.dir)
+            self.assertTrue(r.ok, r.errors)   # control
+        for name, datas in cases.items():
+            with ModDir() as md:
+                self.add_shots(md, datas)
+                r, _ = ap.validate_dir(md.dir)
+                self.assertFalse(r.ok, name)
+                rc, _ = run(["package", md.dir, "--out", os.path.join(md.td, "d")])
+                self.assertNotEqual(rc, 0, name)
+
+    def test_validate_refuses_non_boolean_beta(self):
+        def mut(m):
+            m["beta"] = "yes"
+        with ModDir(mutate=mut) as md:
+            r, _ = ap.validate_dir(md.dir)
+            self.assertFalse(r.ok)
+
+    def test_package_with_four_shots_refused(self):
+        with ModDir() as md:
+            out = os.path.join(md.td, "dist")
+            self.add_shots(md, [png(100, 100)])
+            rc, _ = run(["package", md.dir, "--out", out])
+            self.assertEqual(rc, 0)
+            pkg = os.path.join(out, "hello-az-1.0.0.azmod")
+            r, _ = ap.validate_package(pkg)
+            self.assertTrue(r.ok, r.errors)
+            if ap.PACKAGE_FORMAT == "zip":
+                four = os.path.join(md.td, "four.azmod")
+                with zipfile.ZipFile(pkg) as zi, zipfile.ZipFile(four, "w") as zo:
+                    for n in zi.namelist():
+                        zo.writestr(n, zi.read(n))
+                    for i in range(2, 5):
+                        zo.writestr("shots/s%d.png" % i, png(100, 100))
+                r, _ = ap.validate_package(four)
+                self.assertTrue(any("screenshots" in e for e in r.errors), r.errors)
+
+
 class ModDir:
     """A temporary copy of the template with a fixture library in out/."""
 
