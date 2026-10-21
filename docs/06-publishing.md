@@ -266,7 +266,7 @@ objects and no repeated keys.
 | `firmware` | yes | `["any"]` alone, or `ep147-` tags ([Hooks and firmware tags](05-hooks-and-firmware.md)) |
 | `hooks` | yes | `true` only with tags; `false` for `["any"]` |
 | `min_core` | no | the lowest AZ-MODS version the mod needs (`AZ_CORE_VERSION` in `azmod-mod.h`) |
-| `category` | no | `visual`, `controls`, `audio` or `tools` (the Browse filter) |
+| `category` | no | where Browse on the deck lists the mod: `visual` (something on the screen), `controls` (buttons, pads, jog wheels), `audio` (sound, mixing, stems) or `tools` (library, settings, utilities). Without one, or with another value, the mod is listed under Other |
 | `beta` | no | `true` or `false`. `true` says the mod is not proven stable yet; the deck marks it BETA in Browse and on its page |
 
 A deck also refuses to install a package whose `azmod.json` `version` differs from the entry's.

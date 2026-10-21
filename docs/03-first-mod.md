@@ -50,7 +50,8 @@ is published. It must also be unique across every repository a deck reads; see [
   "api": 1,
   "firmware": ["any"],
   "hooks": false,
-  "min_core": "1.2.3"
+  "min_core": "1.2.3",
+  "category": "tools"
 }
 ```
 
@@ -62,6 +63,9 @@ The core reads the manifest before any of the mod's code runs.
 | `source` | A public `https://` link to the source. A deck refuses a mod without one (`No source link in azmod.json`) |
 | `summary`, `description` | What users read before installing: up to 119 characters, in plain text |
 | `min_core` | The oldest AZ-MODS release the mod runs on. An older core shows `Needs AZ-MODS <min_core> or newer` and does not load the mod |
+| `category` | Where the mod is listed in Browse on the deck: `visual` (something on the screen), `controls` (buttons, pads, jog wheels), `audio` (sound, mixing, stems) or `tools` (library, settings, utilities). Without one, the mod is listed under Other |
+| `beta` | Optional. `true` while the mod is not proven stable yet: the deck marks it BETA in Browse and on its page. Remove it, or set `false`, once it is |
+| `shots/*.png` | Not a field: up to 3 screenshots in a `shots/` folder beside `azmod.json`, shown on the mod's page on the deck ([limits](06-publishing.md#the-package)) |
 
 For every field, see [Packaging and publishing](06-publishing.md#azmodjson).
 

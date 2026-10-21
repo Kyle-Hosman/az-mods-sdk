@@ -11,5 +11,6 @@
   "api": 1,
   "firmware": ["any"],
   "hooks": false,
-  "min_core": "1.2.3"
+  "min_core": "1.2.3",
+  "category": "tools"
 }
