@@ -8,7 +8,7 @@ restarting disables the new provider. No generated address tables were changed.
 The current milestone is completing the existing native loop/cue commands through
 behavioral tests. All 26 IDs have development paths; broader live-state/source
 features remain follow-up work. Waveform processing and PRO DJ LINK are out of scope.
-The support matrix in [CORE-SDK-SUPPORT.md](CORE-SDK-SUPPORT.md) records those gaps.
+The support matrix in [track-data support](14-track-data-support.md) records those gaps.
 
 ## Compatibility
 
@@ -455,14 +455,14 @@ catalog and run generation/check mode; never hand-edit generated tables.
 
 With a user-owned ANLZ sample directory, run `ANLZ_SAMPLE_DIR=/path/to/samples SAN=asan tests/sdk-data.sh` on one shell line. The optional probe also runs under TSan. It
 keeps all original and derived bytes outside the contribution. The measured results and
-limitations are in [ANLZ evidence](CORE-SDK-ANLZ-EVIDENCE.md); native research is recorded in
-[native evidence](CORE-SDK-NATIVE-EVIDENCE.md).
+limitations are in [ANLZ evidence](15-analysis-evidence.md); native research is recorded in
+[native evidence](16-native-evidence.md).
 
 `tests/sdk-stored.sh` separately covers optional PCP2 tails, saved status matching, raw
 memory color IDs, PSSI versions and bounded PWV4/PWV6 windows, with deliberate regression
 controls. With the original sample it independently compares eight memory IDs and three
 streamed windows per preview encoding against raw file bytes. It also runs without assets.
-See [stored-data completion evidence](CORE-SDK-STORED-COMPLETION.md) for the exact scope and
+See stored-data completion evidence in the core checkout for the exact scope and
 remaining real saved-memory/native tests; waveform calibration is outside the current scope.
 
 ## Timing precision and invalid clocks
@@ -471,8 +471,13 @@ Use `compare_timestamps()` from `azmod-timestamps.h` for every timestamp compari
 including equality, ordering, ranges and deadlines:
 
 ```c
-int order = compare_timestamps(first, second, units_per_second, sample_rate, window_samples);
-if (order == AZ_TIME_EQUAL) { /* equivalent within the actual sample window */ }
+#include "azmod-timestamps.h"
+
+static int same_window(double first, double second, uint64_t units_per_second,
+                       uint64_t sample_rate, uint64_t window_samples) {
+    int order = compare_timestamps(first, second, units_per_second, sample_rate, window_samples);
+    return order == AZ_TIME_EQUAL;
+}
 ```
 
 The function returns `AZ_TIME_BEFORE`, `AZ_TIME_EQUAL`, `AZ_TIME_AFTER`, or

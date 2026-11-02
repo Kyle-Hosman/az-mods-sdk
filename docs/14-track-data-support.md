@@ -276,7 +276,7 @@ add zero entries, guessed addresses or hand-edited generated arrays.
 The supplied real DAT/EXT pair also passes an independent raw-field comparison: 753 beats,
 16 point cues, 20 phrases and 400 overview bytes. A PCO2-stripped in-memory control exposed
 and now verifies the split legacy hot-cue fallback fix. See
-[ANLZ evidence](CORE-SDK-ANLZ-EVIDENCE.md) and [native research](CORE-SDK-NATIVE-EVIDENCE.md).
+[ANLZ evidence](15-analysis-evidence.md) and [native research](16-native-evidence.md).
 The original track has no saved loops. A second analysis-only pair verifies two saved
 hot-cue loops, their extended and legacy boundaries, and two boundary-error controls. Real-file
 saved Memory loop parsing and native/file comparison remain unverified; native
@@ -291,7 +291,7 @@ format and synthetic/derived coverage; a natural export remains pending. The sta
 stored suite checks parser/provider bounds and catches deliberate regressions, including
 the preview clock, width/header/capacity and duration validity. These file checks establish
 neither native loaded-analysis precedence nor calibrated rendering. See
-[stored completion evidence](CORE-SDK-STORED-COMPLETION.md).
+stored completion evidence in the core checkout.
 
 The expanded native-kernel run passes 27 standalone checks in plain, ASan/UBSan (leak
 detection enabled) and TSan modes, with fourteen deliberately broken controls detected.
