@@ -1,0 +1,18 @@
+{
+  "azmod": 1,
+  "id": "library-inspector",
+  "name": "Core Library Inspector",
+  "version": "0.1.0",
+  "author": "AZ-MODS contributors",
+  "summary": "One client for the shared core library service",
+  "description": "Development inspector with Cues, Live, Analysis and Control pages. All data, caching, observations and commands come from the same versioned core library service. Requires its development flags and capability checks.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": [
+    "any"
+  ],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

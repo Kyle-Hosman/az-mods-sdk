@@ -729,6 +729,13 @@ Gets the playhead's position within the current beat, `0` to `1`. Any thread.
 
 Calls `fn` on the UI thread when a deck loads (`AZ_DECK_LOADED`), ejects (`AZ_DECK_EJECTED`),
 plays (`AZ_DECK_PLAY`) or stops (`AZ_DECK_STOP`). Call it from `init`. Up to 4 per mod.
+Subscriptions from a failed `init` are never called and do not consume capacity
+needed by a later mod. The current initialization's subscriptions remain reserved
+until its result is known.
+With the experimental native-live observer enabled, `AZ_DECK_CUES_CHANGED` reports
+native cue-set changes on that deck. Several changes may share one UI callback.
+This is an invalidation notification, including native load/reset updates; it does
+not identify a main/hot/memory cue, confirm a save, or associate the deck with a USB track.
 
 ```c
 static void on_deck(int deck, int what, void *user)
@@ -1084,3 +1091,16 @@ it in `init` and returns non-zero with a log line naming it.
 
 A change that is not append-only gets a new ABI number (`AZ_MOD_ABI`), and the core
 refuses mods built for a different one, showing the reason in the Mod Menu.
+
+## Shared core library service (development)
+
+`library_service(AZ_LIBRARY_ABI)` returns one versioned `az_library_v1` table for enumeration,
+source-qualified track data, cue/loop analysis, live observations, waveforms, timing, events
+and command submission. Check the getter with `AZ_HAS`, then members with `AZ_LIB_HAS`.
+Unsupported ABI versions return NULL. All consumers use the same core-owned service and cache;
+the individual development entries in the core table remain compatibility aliases.
+
+See the [library service contract](13-track-data.md) for development flags, capabilities,
+units, ownership, unavailable native operations and firmware validation limits. The single
+[Core Library Inspector](../examples/library-inspector)
+is a diagnostic client; it contains no native reader or command backend.

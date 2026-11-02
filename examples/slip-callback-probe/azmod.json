@@ -1,0 +1,16 @@
+{
+  "azmod": 1,
+  "id": "sdk-slip-capture",
+  "name": "SDK Slip Callback Capture",
+  "version": "0.1.0",
+  "author": "AZ-MODS contributors",
+  "summary": "Bounded native Slip callback observation",
+  "description": "Temporary development diagnostic. Copies the native callback scalar during execution and forwards the original. Receiver is opaque; no enabled, active or logical-deck claim. Uses normal approval and checked code bindings.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": ["ep147-79d43e5de779fc1b", "ep147-9e9454e357389ece"],
+  "hooks": true,
+  "min_core": "1.2.3"
+}

@@ -109,6 +109,11 @@ new.
 | `call it from init()` | the claim came after `init` returned, or from another mod's `init` |
 | `called with this mod's id from outside its code` | the call did not come from the mod named by `id` |
 
+Owner-scoped services also check the calling code, including `thread_start`. An optimized
+tail call can remove the mod frame and make a legitimate terminal call fail this check.
+Use `-fno-optimize-sibling-calls` when building such callbacks; the library inspector example
+includes this flag after hardware testing caught its terminal worker-start call.
+
 If a function is declined, hook its caller or a function it calls instead. The core accepts a
 wrong address whenever its first instructions happen to be movable, so read the first
 instructions at each address in your own copy of EP147 and confirm they start the intended

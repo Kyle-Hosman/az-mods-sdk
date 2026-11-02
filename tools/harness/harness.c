@@ -981,6 +981,36 @@ static void end_lifetime(void)
     nthreads = 0;
 }
 
+#include "track-data.h"
+#include "track-timing.h"
+
+static const az_library_v1 HT_LIBRARY = {
+    .abi = AZ_LIBRARY_ABI,
+    .size = sizeof(az_library_v1),
+    .lib_playlists = s_lib_playlists,
+    .lib_tracks = s_lib_tracks,
+    .data_capabilities = ht_caps,
+    .track_resolve = ht_resolve,
+    .track_request = ht_request,
+    .track_acquire = ht_acquire,
+    .track_release = ht_release,
+    .track_cancel = ht_cancel,
+    .data_event = ht_event,
+    .deck_snapshot = ht_deck,
+    .time_to_beat = ht_time_to_beat,
+    .beat_to_time = ht_beat_to_time,
+    .time_interval = ht_interval,
+    .command_submit = ht_command,
+    .waveform_request = ht_wave_request,
+    .waveform_acquire = ht_wave_acquire,
+    .command_poll = ht_command_poll,
+    .command_cancel = ht_command_cancel,
+    .command_release = ht_command_release,
+};
+static const az_library_v1 *ht_library_service(uint32_t abi) {
+    return abi == AZ_LIBRARY_ABI ? &HT_LIBRARY : NULL;
+}
+
 static const az_core_v1 CORE = {
     .abi = AZ_MOD_ABI,
     .size = sizeof(az_core_v1),
@@ -1028,6 +1058,21 @@ static const az_core_v1 CORE = {
     .banner = s_banner,
     .confirm = s_confirm,
     .post_ui = s_post_ui,
+    .data_capabilities = ht_caps,
+    .deck_snapshot = ht_deck,
+    .track_resolve = ht_resolve,
+    .track_request = ht_request,
+    .track_acquire = ht_acquire,
+    .track_release = ht_release,
+    .track_cancel = ht_cancel,
+    .data_event = ht_event,
+    .command_submit = ht_command,
+    .waveform_request = ht_wave_request,
+    .library_service = ht_library_service,
+    .waveform_acquire = ht_wave_acquire,
+    .time_to_beat = ht_time_to_beat,
+    .beat_to_time = ht_beat_to_time,
+    .time_interval = ht_interval,
 };
 
 /* ---- loading and calling the mod ---------------------------------------------------------- */
@@ -1040,6 +1085,9 @@ static int load_mod(void)
 {
     if (handle && !keep_loaded) dlclose(handle);   /* the core never unloads a mod with a thread or tap */
     if (nthreads) end_lifetime();
+    pthread_mutex_lock(&ht_mu);
+    memset(ht_slots, 0, sizeof ht_slots);
+    pthread_mutex_unlock(&ht_mu);
     handle = dlopen(mod_path, RTLD_NOW | RTLD_LOCAL);
     if (!handle) {
         fail(K_INIT, "dlopen: %s", dlerror());

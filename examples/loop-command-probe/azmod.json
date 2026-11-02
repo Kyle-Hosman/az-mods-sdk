@@ -1,0 +1,16 @@
+{
+  "azmod": 1,
+  "id": "sdk-loop-command-probe",
+  "name": "SDK Loop Command Probe",
+  "version": "0.1.1",
+  "author": "AZ-MODS contributors",
+  "summary": "Explicit-request async loop command emulator diagnostic",
+  "description": "Development diagnostic. Executes bounded, process-bound loop commands only when explicitly requested through its data directory. Uses the public library service and normal loader; no native hooks.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": ["any"],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

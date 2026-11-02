@@ -1,0 +1,18 @@
+{
+  "azmod": 1,
+  "id": "sdk-state-probe",
+  "name": "SDK Public State Probe",
+  "version": "0.1.0",
+  "author": "AZ-MODS contributors",
+  "summary": "Bounded read-only public SDK receipt probe",
+  "description": "Development diagnostic for the public core library service. Records Master Tempo and Sync values with their independent receipt identities. No native hooks, commands or parsing. Uses the normal mod loader.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": [
+    "any"
+  ],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

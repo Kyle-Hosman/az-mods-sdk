@@ -1,0 +1,18 @@
+{
+  "azmod": 1,
+  "id": "sdk-wave-layer-probe",
+  "name": "SDK Public Wave Layer Probe",
+  "version": "0.1.0",
+  "author": "AZ-MODS contributors",
+  "summary": "Bounded read-only encoding8 public SDK diagnostic",
+  "description": "Selects the first public library track from explicitly configured USB1 port0, resolves its public reference and checks raw PWV7 against derived encoding8 windows. Uses the normal loader and a managed worker. No native hooks or controls.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": [
+    "any"
+  ],
+  "hooks": false,
+  "min_core": "1.2.3"
+}

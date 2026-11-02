@@ -91,6 +91,10 @@ nav:
       - Logs: 09-logs.md
   - Reference:
       - API reference: API.md
+      - Shared library service: 13-track-data.md
+      - Track data support matrix: 14-track-data-support.md
+      - Analysis evidence: 15-analysis-evidence.md
+      - Native investigation: 16-native-evidence.md
       - Mod Menu keys: MOD-MENU-KEYS.md
       - The deck program: reference.md
       - Addresses: reference-addresses.md

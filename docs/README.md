@@ -13,3 +13,5 @@
 
 Reference: the [API reference](API.md), the [Mod Menu keys](MOD-MENU-KEYS.md) and the header,
 [`include/azmod-mod.h`](https://github.com/Kyle-Hosman/az-mods-sdk/blob/main/include/azmod-mod.h).
+
+Development API: [Track data](13-track-data.md) and [support matrix](14-track-data-support.md).

@@ -1,0 +1,18 @@
+{
+  "azmod": 1,
+  "id": "sdk-cue-command-probe",
+  "name": "SDK Cue Command Probe",
+  "version": "0.1.0",
+  "author": "AZ-MODS contributors",
+  "summary": "Explicit public native cue command emulator test",
+  "description": "Process-bound public async main, hot, memory and saved-loop command testing in an owned emulator.",
+  "category": "tools",
+  "license": "GPL-3.0-only",
+  "source": "https://github.com/Kyle-Hosman/az-mods-sdk",
+  "api": 1,
+  "firmware": [
+    "any"
+  ],
+  "hooks": false,
+  "min_core": "1.2.3"
+}
