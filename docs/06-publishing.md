@@ -302,9 +302,11 @@ Two mods may share a display `name`; the deck and the app show each with its aut
 
 Listing is optional. The [Mod Index](https://github.com/Kyle-Hosman/az-mods-index) is
 the set of repositories every deck and the desktop app show by default, without anyone adding
-them. To list a repository, open a pull request there that adds its URL to
-`azmods-repos.json`. The list's README describes the review: public source, a passing
-validator, the [Guidelines](GUIDELINES.md) and an accurate description. `azmod-pack list check
+them. To list a repository, submit it in #submit-to-index on the AZ-MODS Discord
+(https://discord.gg/SGBxQPK24J), or open a pull request there that adds its URL to
+`azmods-repos.json`. The list's [CONTRIBUTING.md](https://github.com/Kyle-Hosman/az-mods-index/blob/main/CONTRIBUTING.md)
+describes what to post and the review: public source, a passing validator, the
+[Guidelines](GUIDELINES.md) and an accurate description. `azmod-pack list check
 azmods-repos.json --download` runs the same checks as its CI.
 
 A repository off the list works the same once a user adds it, but its mods' pages say "Not in
