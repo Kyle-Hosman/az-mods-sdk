@@ -19,6 +19,8 @@
 #   -Werror=implicit-function-declaration   same reason, at compile time
 #   -fno-omit-frame-pointer     if your mod ever crashes the deck, the core can trace it
 #                                back to your mod (and only your mod is switched off)
+#   -fno-optimize-sibling-calls  a core call as the last statement of a callback still
+#                                counts as your mod's call (the core checks who called)
 #   -fexceptions -fasynchronous-unwind-tables   the deck's own code throws C++
 #                                exceptions through call chains your code can sit in;
 #                                without unwind tables that becomes a crash
@@ -47,6 +49,7 @@ CC := gcc
 endif
 CFLAGS  := -O2 -Wall -Wextra -Werror=implicit-function-declaration \
            -fPIC -fvisibility=hidden -fno-omit-frame-pointer \
+           -fno-optimize-sibling-calls \
            -fexceptions -fasynchronous-unwind-tables \
            -I$(AZ_SDK_INCLUDE)
 LDFLAGS := -shared -static-libgcc -Wl,--no-undefined -Wl,--hash-style=gnu
@@ -61,6 +64,7 @@ CFLAGS += $(NO_OUTLINE_ATOMICS)
 CXX_SRCS   := $(filter %.cpp %.cc,$(SRCS))
 CXXFLAGS   := -O2 -Wall -Wextra -fPIC -fvisibility=hidden -fvisibility-inlines-hidden \
               -fno-omit-frame-pointer -fexceptions -fasynchronous-unwind-tables \
+              -fno-optimize-sibling-calls \
               -I$(AZ_SDK_INCLUDE) $(NO_OUTLINE_ATOMICS)
 CXXLDFLAGS := -shared -Wl,--no-undefined -Wl,--hash-style=gnu \
               -Wl,--version-script=$(OUT)/exports.map

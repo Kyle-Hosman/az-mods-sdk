@@ -56,9 +56,10 @@ Rules that follow from this table:
 
 - Don't block, sleep, do file or network I/O, or allocate heavily in any callback
   ([Guidelines](GUIDELINES.md#3-keep-the-busy-paths-fast)).
-- Mods are loaded once, when EP147 starts, and aren't unloaded. If `init` returns
-  non-zero, the core stops calling the mod but the library stays mapped. There is no shutdown
-  callback.
+- Mods are loaded once, when EP147 starts, and the library is never unloaded. If `init`
+  returns non-zero, the core stops calling the mod but the library stays mapped. A mod can
+  also provide the optional [`stop()`](#turning-a-mod-off-live-stop), which lets the Mod Menu
+  turn it off and on without a reload.
 - The core loads up to 16 mods: the first 16 `community-mods.<id> = on` lines in `MODS/azmods.cfg`.
 
 ## Your descriptor: `az_mod_v1`
@@ -96,6 +97,43 @@ const az_mod_v1 *az_mod_v1_entry(void) { return &MOD; }
 
 `az_mod_v1_entry` is the only exported symbol. The header declares it with `AZ_MOD_EXPORT`,
 so a definition stays visible under `-fvisibility=hidden`.
+
+## Turning a mod off live: `stop()`
+
+`stop` is an optional member of `az_mod_v1`: `void (*stop)(void)`. Needs AZ-MODS 1.2.9 or
+newer. With it, the Mod Menu turns the mod off and on while the deck runs. Without it, the
+change waits for a reload, as before.
+
+What the core does when the DJ turns a mod off:
+
+1. It stops calling the mod (`tick`, `on_frame`, filters, callbacks, pages, rows).
+2. It waits up to 500 ms for calls already running in the mod on other threads to return.
+   If one does not return, `stop()` is not called, and turning the mod on waits for a reload.
+3. It calls `stop()` on the UI thread. Your settings (`cfg_*`) and `log` work inside it.
+4. It forgets the mod's rows, input handlers and deck registrations, stops programs the
+   mod launched, and waits up to 1 s for threads started through `thread_start` to end. If
+   any still run, the mod stays off until a reload.
+
+What `stop()` must do: undo what `init` did. End the threads it started, release anything it
+changed outside the core's services, and free or reset its state. Turning the mod on calls
+`init()` again on the same loaded library, so do setup in `init()`, never in static
+initializers, and leave no state behind that a second `init()` would trip over.
+
+A mod that claims hooks (`claim_hook`) is not stopped live: the change waits for a reload and
+`stop()` is not called. The same holds for mods the core marks as having used something that
+lasts until the next start (for example vtable slots, surfaces, X windows, audio taps or
+hand-offs). When `stop()` freezes or crashes EP147, the mod is suspended as a failing `init()`
+would be.
+
+Staying compatible with older cores: a core older than 1.2.9 has no `stop` member and never
+calls it. Build against this header and set `.stop` in the descriptor: an older core reads the
+descriptor by its `size` and ignores the extra member, so the mod loads as before and a change
+takes effect after a reload. From your own code, `AZ_MOD_HAS_STOP(&MOD)` tells whether a
+descriptor carries a `stop`.
+
+A core call as the last statement of `stop()` can be compiled into a tail call, which the
+core reads as coming from outside your mod and refuses. Build with `-fno-optimize-sibling-calls`
+(the template does), or end `stop()` with a plain statement.
 
 ## Core services: `az_core_v1`
 

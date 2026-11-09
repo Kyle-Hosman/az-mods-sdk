@@ -263,6 +263,17 @@ static int init(const az_core_v1 *core)
     return 0;
 }
 
+/* Optional. With it, the Mod Menu turns this mod off and on without a reload. The core has
+ * already stopped calling tick() and the page; this mod started no threads and launched no
+ * programs, so all there is to undo is its own state. Turning it on calls init() again. */
+static void stop(void)
+{
+    if (C) C->log(MOD_ID, "stopped");
+    dirty = 0;
+    seen_count = -1;
+    last_redraw_ms = -MIN_REDRAW_MS;
+}
+
 /* "any": this mod uses only core services and claims no hooks, so it loads on every
  * firmware. A mod that claims hooks lists the exact firmware tags it was tested on. */
 static const char *const FW_TAGS[] = { "any", NULL };
@@ -273,6 +284,7 @@ static const az_mod_v1 MOD = {
     .id = MOD_ID,
     .fw_tags = FW_TAGS,
     .init = init,
+    .stop = stop,
     .tick = tick,
     .on_frame = NULL,                 /* this mod does not look at control frames */
 };
