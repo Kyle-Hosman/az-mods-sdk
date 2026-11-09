@@ -137,6 +137,20 @@ tracks.
 A release asset was replaced after it was published, so its `sha256` or `size` no longer
 matches the repository file. Release a new version instead of replacing a package.
 
+### Can I charge for my mod?
+
+The GPL-3.0 lets anyone charge for copies, installation or support, as long as every buyer
+gets the mod's full source under the GPL-3.0, including any code it downloads, and is free to
+share it. AZ-MODS itself does not support paid mods:
+
+- The Mod Index lists only mods that are free with every feature: no paid tiers,
+  subscriptions, license keys, paid accounts or paid content, in the mod or in a service it
+  depends on. A donation link is fine as long as nothing is locked behind it.
+- Paid mods, and mods that unlock features through a paid service, get no help in the
+  AZ-MODS Discord or issue trackers. Questions about them go to whoever sells them.
+- The AZ-MODS name and logo may not be used to sell or promote a paid mod, service or
+  installation.
+
 ### Do I have to be in the Mod Index?
 
 No. Any user can add a repository on the deck by its name. The Mod Index decides which

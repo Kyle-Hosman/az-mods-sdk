@@ -99,6 +99,9 @@ firmware, not copies of it, so they are fine.
 access to their deck. The deck's firmware files would put the repository, and the Mod Index,
 at risk of being taken down.
 
+Listed mods are also free with every feature: see
+[Can I charge for my mod?](07-faq.md#can-i-charge-for-my-mod).
+
 ## Good habits
 
 ### Say what the mod does
